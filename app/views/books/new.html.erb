@@ -1,0 +1,16 @@
+<% @page_title = "New Book Creation" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="book new">
+	<h2>Create Book</h2>
+
+	<%= form_for(:book, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<div class="form-buttons">
+			<%= submit_tag("Create Book") %>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,31 @@
+		<%= error_messages_for(@book) %>
+		<table summary="Book form fields">
+			<tr>
+				<th><%= f.label(:name, "Book Title") %></th>
+				<td><%= f.text_field(:name) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:author_id, "Author") %></th>
+				<td><%= f.select(:author_id, @authors.map {|a| [a.name, a.id]}) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:publisher) %></th>
+				<td><%= f.text_field(:publisher) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:page_count, "Page Count") %></th>
+				<td><%= f.text_field(:page_count) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:word_count) %></th>
+				<td><%= f.text_field(:word_count) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:isbn, "ISBN") %></th>
+				<td><%= f.text_field(:isbn) %></td>
+			</tr>	
+			<tr>
+				<th><%= f.label(:published_year, "Date Published") %></th>
+				<td><%= f.date_select(:published_year, :end_year => Time.now.year, :discard_day => true, :order => [:month, :year], :start_year => Time.now.year-100) %></td>
+			</tr>			
+		</table>

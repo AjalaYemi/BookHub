@@ -1,0 +1,29 @@
+<%= link_to("<< Back to Admin Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
+<div class = "authors index">
+	<h2>Authors</h2>
+
+	<%= link_to("Add New Author", {:action => 'new'}, :class => 'action new') %>
+
+	<table class="listing" summary="Author list">
+		<tr class="header">
+			
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Bio</th>
+			<th>Actions</th>
+		</tr>
+		<% @authors.each do |author| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= author.first_name %></td>
+			<td><%= author.last_name %></td>
+			<td><%= author.bio %></td>
+			<td class="actions">
+				<%= link_to("View Books", {:controller => 'books', :author_id => author.id}, :class => 'action show') %>
+				<%= link_to("Show", {:action => 'show', :id => author.id}, :class => 'action show') %>
+				<%= link_to("Edit", {:action => 'edit', :id => author.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action => 'delete', :id => author.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

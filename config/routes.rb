@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'book/index'
-
-  # get 'books/index'
-  root 'books#index'
-  match ':controller(/:action(/:id(.:format)))', :via => :get
+  
+     # get 'books/index'
+  root 'public#index'
+  get 'show/:permalink', :to => 'public#show'
+  get 'admin', :to => "access#index"
+  match ':controller(/:action(/:id(.:format)))', :via => [:get, :post]
 
   #  get "books_controller/index"
   # The priority is based upon order of creation: first created -> highest priority.

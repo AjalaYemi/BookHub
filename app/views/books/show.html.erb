@@ -1,0 +1,43 @@
+<% @page_title = @book.name %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<div class="books show">
+	<h2>Show Book</h2>
+	<table summary="Book detail view">
+		<tr>
+			<th>Name</th>
+			<td><%= @book.name %></td>
+		</tr>
+		<tr>
+			<th>Authors</th>
+			<td><%= @authors.find_by_id(@book.author_id).name %></td>
+		</tr>
+		<tr>
+			<th>Publisher</th>
+			<td><%= @book.publisher %></td>
+		</tr>
+		<tr>
+			<th>ISBN</th>
+			<td><%= @book.isbn %></td>
+		</tr>
+		<tr>
+			<th>Published</th>
+			<td><%= @book.published_year %></td>
+		</tr>
+		<tr>
+			<th>Page Count</th>
+			<td><%= @book.page_count %></td>
+		</tr>
+		<tr>
+			<th>Word Count</th>
+			<td><%= @book.word_count %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @book.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @book.updated_at %></td>
+		</tr>
+	</table>
+</div>

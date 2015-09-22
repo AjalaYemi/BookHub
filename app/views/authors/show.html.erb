@@ -1,0 +1,28 @@
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<div class="author show">
+	<h2>Show Author</h2>
+	<table summary="author detail view">
+		<tr>
+			<th>First Name</th>
+			<td><%= @author.first_name %></td>
+		</tr>
+		<tr>
+			<th>Last Name</th>
+			<td><%= @author.last_name %></td>
+		</tr>
+		<tr>
+			<th>Bio</th>
+			<td><%= @author.bio %></td>
+		</tr>
+		<tr>
+			<th>Created</th>
+			<td><%= @author.created_at %></td>
+		</tr>
+		<tr>
+			<th>Updated</th>
+			<td><%= @author.updated_at %></td>
+		</tr>
+	</table>
+</div>
+
