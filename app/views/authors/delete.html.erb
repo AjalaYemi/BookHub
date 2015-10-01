@@ -3,7 +3,7 @@
 <div class="Author delete">
 	<h2>Delete Author</h2>
 
-	<%= form_for(:book, :url => {:action => 'destroy', :id => @author.id}) do |f| %>
+	<%= form_for(:author, :url => {:controller => 'authors', :action => 'destroy', :id => @author.id}) do |f| %>
 		<p>Are you sure you want to permanently delete this subject?</p>
 
 		<p class="reference-name"><%= @author.name %></p>

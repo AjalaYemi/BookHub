@@ -59,7 +59,7 @@ class BooksController < ApplicationController
     else
     # If save fails, redisplay the form so the user can fix the problems
     @authors = Author.sorted
-    render('edit')
+    render('edit', :id => @book.id)
     end 
   end
 
@@ -68,9 +68,9 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    book = Book.find(params[:id]).destroy   
-    flash[:notice] = "Congratulations! The book '#{book.name}' deleted successfully"
-    redirect_to(:action => 'index', :author_id => @author.id)
+    @book = Book.find(params[:id]).destroy   
+    flash[:notice] = "Congratulations! The book '#{@book.name}' deleted successfully"
+    redirect_to(:action => 'index')
   end
 
   

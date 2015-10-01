@@ -51,3 +51,11 @@ gem 'schema_to_scaffold', '~> 0.7.2'
 # gem 'babosa'
 gem 'carrierwave'
 gem "mini_magick"
+
+# For Using social media authentication
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+
