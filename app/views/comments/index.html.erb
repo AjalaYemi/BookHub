@@ -1,0 +1,29 @@
+<% @page_title = "All Comments" %>
+<%= link_to("<< Back to Admin Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
+<div class = "comments index">
+	<h2>Comments</h2>
+	<%=  %>
+	<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + " Add New Comment", {:action => 'new'}, :class => 'action new') %>
+
+	
+	<table class="listing" summary="Comment list">
+		<tr class="header">			
+			<th>Commentator</th>
+			<th>Comment</th>
+			<th>Book</th>			
+			<th>Actions</th>
+		</tr>
+		<% @comments.each do |comment| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= comment.user.name %></td>
+			<td><%= comment.comment %></td>
+			<td><%= comment.book.name %></td>
+			<td class="actions">
+				<%= link_to("Show", {:action => 'show', :id => comment.id}, :class => 'action show') %>
+				<%= link_to("Edit", {:action => 'edit', :id => comment.id}, :class => 'action edit') %>
+				<%= link_to("Delete", {:action => 'delete', :id => comment.id}, :class => 'action delete') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

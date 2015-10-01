@@ -1,5 +1,35 @@
 Rails.application.routes.draw do
   
+  get 'reviews/index'
+
+  get 'reviews/show'
+
+  get 'reviews/new'
+
+  get 'reviews/edit'
+
+  get 'reviews/delete'
+
+  get 'comments/index'
+
+  get 'comments/show'
+
+  get 'comments/new'
+
+  get 'comments/edit'
+
+  get 'comments/delete'
+
+  get 'genres/index'
+
+  get 'genres/show'
+
+  get 'genres/new'
+
+  get 'genres/delete'
+
+  get 'genres/edit'
+
      # get 'books/index'
   root 'public#index'
   get 'show/:permalink', :to => 'public#show'

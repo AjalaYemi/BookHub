@@ -1,0 +1,17 @@
+<% @page_title = "New Genre Creation" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="genre new">
+	<h2>Create Genre</h2>
+
+	<%= form_for(:genre, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<div class="form-buttons">
+			<%= submit_tag("Create Genre") %>
+		</div>
+	<% end %>
+</div>
+

@@ -1,0 +1,19 @@
+<%= error_messages_for(@review) %>
+		<table summary="Review form fields">
+			<tr>
+				<th><%= f.label(:review, "Title") %></th>
+				<td><%= f.text_field(:title) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:review, "Comment") %></th>
+				<td><%= f.text_area(:review) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:book_id, "Book") %></th>
+				<td><%= f.select(:book_id, @books.map {|b| [b.name, b.id]}) %></td>
+			</tr>
+			<tr>
+				<th><%= f.label(:user_id, "User") %></th>
+				<td><%= f.select(:user_id, @users.map {|u| [u.name, u.id]}) %></td>
+			</tr>
+		</table>

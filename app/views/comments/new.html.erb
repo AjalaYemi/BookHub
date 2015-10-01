@@ -1,0 +1,16 @@
+<% @page_title = "New Comment Creation" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="comment new">
+	<h2>Create Comment</h2>
+
+	<%= form_for(:comment, :url => {:action => 'create'}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<div class="form-buttons">
+			<%= submit_tag("Create Comment") %>
+		</div>
+	<% end %>
+</div>

@@ -1,0 +1,16 @@
+<% @page_title = " Delete this review?" %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="review delete">
+	<h2>Delete Review</h2>
+
+	<%= form_for(:review, :url => {:action => 'destroy', :id => @review.id}) do |f| %>
+		<p>Are you sure you want to permanently delete this review?</p>
+
+		<p class="reference-name"><%= @review.title %></p>
+
+		<div class="form-buttons">
+			<%= submit_tag("Delete Review") %>
+		</div>
+	<% end %>
+</div>

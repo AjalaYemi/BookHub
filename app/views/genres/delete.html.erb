@@ -1,0 +1,17 @@
+<% @page_title = " Delete #{@genre.genre}?" %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="genre delete">
+	<h2>Delete Genre</h2>
+
+	<%= form_for(:genre, :url => {:action => 'destroy', :id => @genre.id}) do |f| %>
+		<p>Are you sure you want to permanently delete this Genre?</p>
+
+		<p class="reference-name"><%= @genre.genre %></p>
+
+		<div class="form-buttons">
+			<%= submit_tag("Delete Genre") %>
+		</div>
+	<% end %>
+</div>
+

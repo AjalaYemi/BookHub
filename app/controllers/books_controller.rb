@@ -13,9 +13,7 @@ class BooksController < ApplicationController
       @books = Book.sorted
       @authors = Author.sorted
     end
-    
-    # @books = @author.books.sorted
-    
+        
   end
 
   def show

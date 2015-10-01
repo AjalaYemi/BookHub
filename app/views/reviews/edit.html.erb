@@ -1,0 +1,17 @@
+<% @page_title = "Update Review" %>
+
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="review new">
+	<h2>Update Review</h2>
+
+	<%= form_for(:review, :url => {:action => 'update', :id => @review.id}) do |f| %>
+
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<div class="form-buttons">
+			<%= submit_tag("Update Review") %>
+		</div>
+	<% end %>
+</div>
+

@@ -29,7 +29,7 @@ class Book < ActiveRecord::Base
 
 	# def touch_author
 	# 	# touch is similar to:
-	# 	# author.update_attribute(:updte_at, Time.now)
+	# 	# author.update_attribute(:update_at, Time.now)
 	# 	author.touch
 	# end
 end
