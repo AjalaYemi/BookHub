@@ -1,0 +1,27 @@
+<% @page_title = @event.name %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<div class="event show">
+	<h2>Show Event</h2>
+	<table summary="Event detail view">
+		<tr>
+			<th>Name</th>
+			<td><%= @event.name %></td>
+		</tr>
+		<tr>
+			<th>Venue</th>
+			<td><%= @event.venue %></td>
+		</tr>
+		<tr>
+			<th>Town/City</th>
+			<td><%= @event.city %></td>
+		</tr>
+		<tr>
+			<th>Number of Spaces</th>
+			<td><%= @event.no_of_available_seats %></td>
+		</tr>
+		<tr>
+			<th>Organiser</th>
+			<td><%= @event.user.name %></td>
+		</tr>
+	</table>
+</div>

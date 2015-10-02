@@ -1,0 +1,16 @@
+<% @page_title = " Editing #{@event.name}" %>
+<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+
+<div class="event edit">
+	<h2>Update Event</h2>
+
+	<%= form_for(:event, :url => {:action => 'update', :id => @event.id}) do |f| %>
+	 
+		<%= render(:partial => "form", :locals => {:f => f}) %>
+
+		<div class="form-buttons">
+			<%= submit_tag("Update Event") %>
+		</div>
+	<% end %>
+</div>
+

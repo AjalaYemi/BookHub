@@ -33,6 +33,7 @@ scope :sorted, lambda { order("users.last_name ASC, users.first_name ASC")}
 
 	has_many :reviews
 	has_many :comments
+	has_many :events
 	has_many :book_exchanges
 	has_many :books, :through => :book_exchanges
 
