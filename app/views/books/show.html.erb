@@ -32,6 +32,10 @@
 			<td><%= @book.word_count %></td>
 		</tr>
 		<tr>
+			<th>Front Cover</th>
+			<td><%= image_tag @book.front_avatar_url(:thumb) %></td>
+		</tr>
+		<tr>
 			<th>Created</th>
 			<td><%= @book.created_at %></td>
 		</tr>

@@ -25,6 +25,10 @@
 				<td><%= f.text_field(:isbn) %></td>
 			</tr>	
 			<tr>
+				<th><%= f.label(:front_avatar, "Book Cover") %></th>
+				<td><%= f.file_field(:front_avatar) %></td>
+			</tr>
+			<tr>
 				<th><%= f.label(:published_year, "Date Published") %></th>
 				<td><%= f.date_select(:published_year, :end_year => Time.now.year, :discard_day => true, :order => [:month, :year], :start_year => Time.now.year-100) %></td>
 			</tr>			

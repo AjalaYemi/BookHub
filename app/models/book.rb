@@ -1,4 +1,5 @@
 class Book < ActiveRecord::Base
+	mount_uploader :front_avatar, AvatarUploader
 	has_many :reviews
 	has_many :comments
 	has_many :book_exchanges

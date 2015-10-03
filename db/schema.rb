@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001201111) do
+ActiveRecord::Schema.define(version: 20151002133717) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20151001201111) do
     t.integer  "page_count"
     t.string   "isbn",           default: ""
     t.string   "permalink"
+    t.string   "front_avatar"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
