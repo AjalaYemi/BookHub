@@ -5,7 +5,7 @@
 <div class="book new">
 	<h2>Create Book</h2>
 
-	<%= form_for(:book, :url => {:action => 'create'}), :html => {:multipart => true} do |f| %>
+	<%= form_for :book, :url => {:action => 'create'}, :html => {:multipart => true} do |f| %>
 
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 
