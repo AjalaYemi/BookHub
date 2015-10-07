@@ -26,7 +26,9 @@
 			</tr>	
 			<tr>
 				<th><%= f.label(:front_avatar, "Book Cover") %></th>
-				<td><%= f.file_field(:front_avatar) %></td>
+				<td><%= image_tag(@book.front_avatar_url(:thumb)) if @book.front_avatar? %>
+					<%= f.file_field(:front_avatar) %></td>
+				 <%= f.hidden_field(:front_avatar_cache) %>
 			</tr>
 			<tr>
 				<th><%= f.label(:published_year, "Date Published") %></th>
