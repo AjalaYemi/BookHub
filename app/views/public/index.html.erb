@@ -1,3 +1,45 @@
-<h2> Welcome to BookHub Nigeria</h2>
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+<% end %>
 
-<p> You can do all the things you love to about the books you have read, is reading, or about to be read on this site. Enjoy</p>
+<table class="listing" summary="Book list">
+		<tr class="header">			
+			<th>Name</th>
+			<th>Author(s)</th>
+			<th>Publisher</th>
+			<th>Page Count</th>
+			<th>Word Count</th>
+			<th>ISBN</th>
+			<th>Published</th>
+			<th>Action</th>
+		</tr>
+		<% @books.each do |book| %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td><%= book.name %></td>
+			<% if book.authors.empty? %>
+				<td> nil </td>
+			<% else %>
+				<td><% book.authors.each do |author| %>
+				<%= author.name %>,
+				<% end %></td>
+			<% end %>
+			<td><%= book.publisher %></td>
+			<td><%= book.page_count %></td>
+			<td><%= book.word_count %></td>
+			<td><%= book.isbn %></td>
+			<td><%= book.published_year %></td>
+			<td class="actions">
+				<%= link_to("Show", {:action => 'show', :id => book.id}, :class => 'action show') %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+</div>

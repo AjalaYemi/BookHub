@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users
   root 'public#index'
   get 'show/:permalink', :to => 'public#show'
   get 'admin', :to => "access#index"

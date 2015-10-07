@@ -7,7 +7,7 @@ class Author < ActiveRecord::Base
 	# scope :first_author, lambda { limit(1)}
 	scope :newest_first, lambda { order("authors.created_at DESC")}
 	scope :search, lambda {|query|
-		where(["name LIKE ?", "%#{query}%"])
+		where(["first_name LIKE ?", "%#{query}%"])
 	}
 
 	

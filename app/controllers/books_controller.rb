@@ -2,7 +2,7 @@ class BooksController < ApplicationController
 
    # layout 'admin'
    
-   before_action :confirm_logged_in, :except => [:index, :show]
+  # before_action :confirm_logged_in, :except => [:index, :show]
    before_action :find_author
 
   def index
