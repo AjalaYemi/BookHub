@@ -4,7 +4,7 @@
 <div class="book delete">
 	<h2>Delete Book</h2>
 
-	<%= form_for(:book, :url => {:controller => 'books', :action => 'destroy', :id => @book.id}) do |f| %>
+	<%= form_for(:book, :url =>book_path(@book.id, :html => {:method => :destroy}) do |f| %>
 		<p>Are you sure you want to permanently delete this Book?</p>
 
 		<p class="reference-name"><%= @book.name %></p>

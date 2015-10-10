@@ -61,3 +61,9 @@ gem 'delayed_job_active_record'
 #Devise password lenght/ weak password rejection
 gem 'devise_zxcvbn'
 
+gem 'any_login'
+gem 'devise_invitable'
+
+gem "devise-async"
+gem 'devise_campaignable'
+

@@ -9,37 +9,3 @@
     </div>
   </div>
 <% end %>
-
-<table class="listing" summary="Book list">
-		<tr class="header">			
-			<th>Name</th>
-			<th>Author(s)</th>
-			<th>Publisher</th>
-			<th>Page Count</th>
-			<th>Word Count</th>
-			<th>ISBN</th>
-			<th>Published</th>
-			<th>Action</th>
-		</tr>
-		<% @books.each do |book| %>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td><%= book.name %></td>
-			<% if book.authors.empty? %>
-				<td> nil </td>
-			<% else %>
-				<td><% book.authors.each do |author| %>
-				<%= author.name %>,
-				<% end %></td>
-			<% end %>
-			<td><%= book.publisher %></td>
-			<td><%= book.page_count %></td>
-			<td><%= book.word_count %></td>
-			<td><%= book.isbn %></td>
-			<td><%= book.published_year %></td>
-			<td class="actions">
-				<%= link_to("Show", {:action => 'show', :id => book.id}, :class => 'action show') %>
-			</td>
-		</tr>
-		<% end %>
-	</table>
-</div>

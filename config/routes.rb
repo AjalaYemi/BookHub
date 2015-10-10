@@ -1,21 +1,20 @@
 Rails.application.routes.draw do
 
   devise_for :users
-  root 'public#index'
-  get 'show/:permalink', :to => 'public#show'
-  get 'admin', :to => "access#index"
-
-   # get 'books/index'
-  # resources :books do 
-  #   member do 
-  #     get :delete
-  #   end    
-  # end
-  # resources :authors do 
-  #   member do 
-  #     get :delete
-  #   end    
-  # end
+  authenticated :user do
+    root to: 'public#show', as: :authenticated_root
+  end
+  root to: 'public#index'
+  resources :books do 
+    member do 
+      get :delete
+    end    
+  end
+  resources :events do 
+    member do 
+      get :delete
+    end    
+  end
   match ':controller(/:action(/:id(.:format)))', :via => [:get, :post]
 
   #  get "books_controller/index"

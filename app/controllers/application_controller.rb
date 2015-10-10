@@ -9,19 +9,20 @@ protected
 
 # Whitelisting of parameters added to user outside Devise
 def configure_permitted_parameters
-  devise_parameter_sanitizer.for(:sign_up) << :first_name#, :last_name, :username
-  devise_parameter_sanitizer.for(:account_update) << :first_name#, :last_name, :username
-end
+    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, :remember_me) }
+    devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :first_name, :last_name, :username, :email, :password, :remember_me) }
+    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:username, :first_name, :last_name, :email, :password, :password_confirmation, :current_password) }
+  end
 
   private
 
-  def confirm_logged_in
-  	unless session[:user_id]
-  		flash[:notice] = "Please log in"
-  		redirect_to(:controller => 'access', :action => 'login')
-  		return false
-  	else
-  		return true
-  	end
-  end
+  # def confirm_logged_in
+  # 	unless session[:user_id]
+  # 		flash[:notice] = "Please log in"
+  # 		redirect_to(:controller => 'access', :action => 'login')
+  # 		return false
+  # 	else
+  # 		return true
+  # 	end
+  # end
 end

@@ -4,7 +4,7 @@
 <div class="book edit">
 	<h2>Update Book</h2>
 
-	<%= form_for(:book, :url => {:action => 'update', :id => @book.id}) do |f| %>
+	<%= form_for(@book) do |f| %>
 	 
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 

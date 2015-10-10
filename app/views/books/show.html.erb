@@ -9,13 +9,7 @@
 		</tr>
 		<tr>
 			<th>Authors</th>
-			<% if @book.authors.empty? %>
-				<td> nil </td>
-			<% else %>
-				<td><% @book.authors.each do |author| %>
-				<%= author.name %>,
-				<% end %></td>
-			<% end %>
+			<td><%= @authors.find_by_id(@book.author_id).name %></td>
 		</tr>
 		<tr>
 			<th>Publisher</th>

@@ -1,5 +1,4 @@
 <% @page_title = "All Events" %>
-<%= link_to("<< Back to Admin Menu", {:controller => 'access', :action => 'index'}, :class => 'back-link') %>
 <div class = "books index">
 	<h2>Events</h2>
 	<%=  %>
@@ -24,8 +23,13 @@
 			<td><%= event.user.name %></td>
 			<td class="actions">
 				<%= link_to("Show", {:action => 'show', :id => event.id}, :class => 'action show') %>
+				<% if current_user.nil? %>
+				 <% else %>
 				<%= link_to("Edit", {:action => 'edit', :id => event.id}, :class => 'action edit') %>
+				<% end %>
+				<% if current_user.try(:admin?) %>
 				<%= link_to("Delete", {:action => 'delete', :id => event.id}, :class => 'action delete') %>
+				<% end %>
 			</td>
 		</tr>
 		<% end %>

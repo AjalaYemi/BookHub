@@ -29,9 +29,11 @@ class BooksController < ApplicationController
   def create
     # Instantiate a new object using form parameters
     @book = Book.new(book_params)
+    # author = Author.find(params[:author_id])
     # Save the object
     if @book.save
     # If save succeeds, redirect to the index action
+    # @book.authors << author
     flash[:notice] = "Congratulations! New Book Created."
     redirect_to(:action => 'index')
     else
@@ -48,11 +50,13 @@ class BooksController < ApplicationController
 
   def update
      # find an existing object using form parameters
-    @book = Book.find(params[:id])    
+    @book = Book.find(params[:id]) 
+    # author = Author.find(params[:author_id])   
     # Update the object
     if @book.update_attributes(book_params)
     # If update succeeds, redirect to the index action
-     flash[:notice] = "Congratulations! Book successfully updated."
+    # @book.authors << author
+    flash[:notice] = "Congratulations! Book successfully updated."
     redirect_to(:action => 'show', :id => @book.id)
     else
     # If save fails, redisplay the form so the user can fix the problems

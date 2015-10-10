@@ -8,12 +8,25 @@
 		<nav class="navbar navbar-inverse">
   			<div class="container">
     			<div class="navbar-header">
-      				<%= link_to 'BookHub', root_path, class: 'navbar-brand' %>
+           <% if user_signed_in? %>
+            <%= link_to("Home", authenticated_root_path, class: 'navbar-brand') %>              
+           <% else %> 
+              <%= link_to 'BookHub', root_path, class: 'navbar-brand' %>
+           <% end %>
     			</div>
     			<div id="navbar">
-     			 <ul class="nav navbar-nav">
-        			<li><%= link_to 'Home', root_path %></li>
-      			</ul>
+     			  <ul class="nav navbar-nav">
+              <li><%= link_to("Books", books_path) %></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li><%= link_to("Events", events_path) %></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li><%= link_to("Book Swap", books_path) %></li>
+            </ul>
+            <ul class="nav navbar-nav">
+              <li><%= link_to("Donate Books", books_path) %></li>
+            </ul>
       			<ul class="nav navbar-nav pull-right">
         			<% if user_signed_in? %>
           				<li class="dropdown">

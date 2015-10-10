@@ -5,11 +5,6 @@
 				<td><%= f.text_field(:name) %></td>
 			</tr>
 			<tr>
-				<th><%= f.label(:user_id, "Organizer") %></th>
-				<!-- Will perform a search of the current logged in user and present the person as this i.e. marked for removal -->
-				<td><%= f.select(:user_id, @users.map {|u| [u.name, u.id]}) %></td>
-			</tr>
-			<tr>
 				<th><%= f.label(:venue) %></th>
 				<td><%= f.text_area(:venue) %></td>
 			</tr>
