@@ -2,9 +2,9 @@
 <div class = "books index">
 	<h2>Books</h2>
 	<%=  %>
-	<% if user_signed_in? %>
+	
 	<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + " Add New Book", {:action => 'new'}, :class => 'action new') %>
-	<% end %>
+	
 
 	
 	<table class="listing" summary="Book list">
@@ -29,13 +29,11 @@
 			<td><%= book.published_year %></td>
 			<td class="actions">
 				<%= link_to("Show", book_path(book.id), :class => ' btn btn-primary btn-lg') %>
-				 <% if current_user.nil? %>
-				 <% else %>
+				
 				<%= link_to("Edit", edit_book_path(book.id), :class => 'action edit') %>
-				 <% end %>
-				<% if current_user.try(:admin?) %>
+				 
 				<%= link_to("Delete", delete_book_path(book.id), :class => 'action delete') %>
-				<% end %>
+				
 			</td>
 		</tr>
 		<% end %>
