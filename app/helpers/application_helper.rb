@@ -5,4 +5,8 @@ module ApplicationHelper
 	def header(text)
   		content_for(:header) { text.to_s }
 	end
+	def find_user(user_id)
+		@user = User.find(user_id)
+		@user.name
+	end
 end

@@ -1,14 +1,10 @@
 <% @page_title = @book.name %>
 <%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
 <div class="book show">
-	<h2>Show Book</h2>
+	<h2><%= @book.name %></h2>
 	<table summary="Book detail view">
 		<tr>
-			<th>Name</th>
-			<td><%= @book.name %></td>
-		</tr>
-		<tr>
-			<th>Authors</th>
+			<th>Author</th>
 			<td><%= @authors.find_by_id(@book.author_id).name %></td>
 		</tr>
 		<tr>
@@ -34,14 +30,28 @@
 		<tr>
 			<th>Front Cover</th>
 			<td><%= image_tag @book.front_avatar_url(:thumb) %></td>
-		</tr>
-		<tr>
-			<th>Created</th>
-			<td><%= @book.created_at %></td>
-		</tr>
-		<tr>
-			<th>Updated</th>
-			<td><%= @book.updated_at %></td>
-		</tr>
+		</tr>		
 	</table>
 </div>
+
+<hr />
+<h4>Reviews about "<%= @book.name %>"</h4>
+<% if @book.reviews.empty? %>
+		<td> There are no Reviews on this book. Why not write yours? </td>
+<% else %>
+	<td><% @book.reviews.each do |review| %>
+	<%= review.review %>, by <%= find_user(review.user_id) %>
+	<% end %></td>
+<% end %>
+<!-- To replace this with a javascript(?) dropdown to allow the user add review from the book page -->
+<%= link_to("Add Review", {:controller => 'reviews', :action => 'new'}) %>
+<hr />
+
+<h4>Comments about "<%= @book.name %>"</h4>
+<% if @book.comments.empty? %>
+		<td> There are no comments on this book. Why not write yours? </td>
+<% else %>
+	<td><% @book.comments.each do |comment| %>
+	<%= comment.comment %>, by <%= find_user(comment.user_id) %>
+	<% end %></td>
+<% end %>

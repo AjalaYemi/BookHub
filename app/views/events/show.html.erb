@@ -1,5 +1,5 @@
 <% @page_title = @event.name %>
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<%= link_to("<< Back to List", events_path, :class => 'back-link') %>
 <div class="event show">
 	<h2>Show Event</h2>
 	<table summary="Event detail view">
@@ -25,3 +25,17 @@
 		</tr>
 	</table>
 </div>
+
+
+<hr />
+
+
+<h4>Comments about "<%= @event.name %>"</h4>
+<% if @event.comments.empty? %>
+		<td> There are no comments on this event. Why not write yours? </td>
+<% else %>
+	<td><% @event.comments.each do |comment| %>
+	<%= comment.comment %>, by <%= find_user(comment.user_id) %>
+	<% end %></td>
+<% end %>
+<%= link_to("Add Review", {:controller => 'comments', :action => 'new'}) %>

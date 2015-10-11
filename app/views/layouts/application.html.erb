@@ -9,7 +9,7 @@
   			<div class="container">
     			<div class="navbar-header">
            <% if user_signed_in? %>
-            <%= link_to("Home", authenticated_root_path, class: 'navbar-brand') %>              
+            <%= link_to(image_tag('logo.jpg', :size => '110x30', :alt => 'Home'), authenticated_root_path, class: 'navbar-brand') %>              
            <% else %> 
               <%= link_to 'BookHub', root_path, class: 'navbar-brand' %>
            <% end %>
@@ -17,20 +17,15 @@
     			<div id="navbar">
      			  <ul class="nav navbar-nav">
               <li><%= link_to("Books", books_path) %></li>
-            </ul>
-            <ul class="nav navbar-nav">
               <li><%= link_to("Events", events_path) %></li>
-            </ul>
-            <ul class="nav navbar-nav">
-              <li><%= link_to("Book Swap", books_path) %></li>
-            </ul>
-            <ul class="nav navbar-nav">
-              <li><%= link_to("Donate Books", books_path) %></li>
+              <li><%= link_to("Book Swap", {:controller => 'book_exchanges', :action => 'swap'}) %></li>
+              <li><%= link_to("Donate Books", {:controller => 'book_exchanges', :action => 'donate'}) %></li>
             </ul>
       			<ul class="nav navbar-nav pull-right">
         			<% if user_signed_in? %>
           				<li class="dropdown">
            				 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <span class="glyphicon glyphicon-user"></span>
               				<%= current_user.first_name %>
               				<span class="caret"></span>
             				</a>
@@ -43,7 +38,7 @@
           				<li><%= link_to 'Log In', new_user_session_path %></li>
           				<li><%= link_to 'Sign Up', new_user_registration_path %></li>
         			<% end %>
-      			 </ul>
+      			</ul>
     			</div>
   			</div>
 		</nav>
@@ -62,11 +57,13 @@
 
 		<div class="container">
  	  		 <h1><%= yield :header %></h1>
+    </div>
+    <div class="container" id="main">
  			 <%= yield %>
 		</div>
 		<div class="clear"></div>
-		<div id="footer">
+		<footer class="footer">
 			<p id="copyright">&copy;<%= Date.today.year.to_s %> BookHub Nigeria Limited</p>
-		</div>
+		</footer>
 	</body>
 </html>

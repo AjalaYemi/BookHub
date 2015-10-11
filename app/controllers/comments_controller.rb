@@ -6,7 +6,8 @@ class CommentsController < ApplicationController
   def show
     @comment = Comment.find(params[:id])
     @books = Book.sorted
-    @users = User.all
+    # @users = User.all
+    @events = Event.sorted
   end
 
   def new
@@ -17,6 +18,7 @@ class CommentsController < ApplicationController
 
   def create
     @books = Book.sorted
+    @events = Event.sorted
     @users = User.all
     @comment = Comment.new(comment_params)
     if @comment.save
@@ -31,6 +33,7 @@ class CommentsController < ApplicationController
   def edit
     @comment = Comment.find(params[:id])
     @books = Book.sorted
+    @events = Event.sorted
     @users = User.all
   end
 

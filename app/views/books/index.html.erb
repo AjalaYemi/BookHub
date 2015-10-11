@@ -31,7 +31,7 @@
 				<%= link_to("Show", book_path(book.id), :class => ' btn btn-primary btn-lg') %>
 				 <% if current_user.nil? %>
 				 <% else %>
-				<%= link_to("Edit", edit_book_path(book.id) :class => 'action edit') %>
+				<%= link_to("Edit", edit_book_path(book.id), :class => 'action edit') %>
 				 <% end %>
 				<% if current_user.try(:admin?) %>
 				<%= link_to("Delete", delete_book_path(book.id), :class => 'action delete') %>

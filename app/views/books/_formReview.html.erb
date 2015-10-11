@@ -8,9 +8,4 @@
 				<th><%= f.label(:review, "Review") %></th>
 				<td><%= f.text_area(:review) %></td>
 			</tr>
-			<tr>
-				<th><%= f.label(:book_id, "Book") %></th>
-				<td><%= f.select(:book_id, @books.map {|b| [b.name, b.id]}) %></td>
-			</tr>
-			
 		</table>

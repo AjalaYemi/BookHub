@@ -1,4 +1,6 @@
-<%= link_to("Books", {:controller => 'books', :action => 'index'}) %>     
-<%= link_to("Events", {:controller => 'events', :action => 'index'}) %>
-<%= link_to("Book Swap", {:controller => 'books', :action => 'index'}) %>
-<%= link_to("Donate Books", {:controller => 'books', :action => 'index'}) %>
+<div class="container">
+	<%= link_to("Books", {:controller => 'books', :action => 'index'}) %>     
+	<%= link_to("Events", {:controller => 'events', :action => 'index'}) %>
+	<%= link_to("Book Swap", {:controller => 'book_exchanges', :action => 'swap'}) %>
+	<%= link_to("Donate Books", {:controller => 'book_exchanges', :action => 'donate'}) %>
+</div>

@@ -9,7 +9,8 @@
 		<tr class="header">			
 			<th>Commentator</th>
 			<th>Comment</th>
-			<th>Book</th>			
+			<!-- <th>Event</th> -->	
+			<th>Book</th>		
 			<th>Actions</th>
 		</tr>
 		<% @comments.each do |comment| %>
@@ -17,6 +18,7 @@
 			<td><%= comment.user.name %></td>
 			<td><%= comment.comment %></td>
 			<td><%= comment.book.name %></td>
+			<!-- <td><%= %></td> -->
 			<td class="actions">
 				<%= link_to("Show", {:action => 'show', :id => comment.id}, :class => 'action show') %>
 				<%= link_to("Edit", {:action => 'edit', :id => comment.id}, :class => 'action edit') %>
