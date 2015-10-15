@@ -20,7 +20,9 @@
 			<td><%= event.venue %></td>
 			<td><%= event.city %></td>
 			<td><%= event.no_of_available_seats %></td>
-			<td><%= event.user.name %></td>
+			<% unless event.user.name.nil? %>
+			<td><%= event.user.name %></td>	
+			<% end %>					
 			<td class="actions">
 				<%= link_to("Show", event_path(event.id), :class => ' btn btn-primary btn-lg') %>
 				 <% if current_user.nil? %>
