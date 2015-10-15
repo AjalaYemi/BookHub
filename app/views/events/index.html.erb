@@ -1,9 +1,9 @@
 <% @page_title = "All Events" %>
 <div class = "books index">
 	<h2>Events</h2>
-	
+	<% if user_signed_in? %>
 	<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + " Add New Event", {:action => 'new'}, :class => 'action new') %>
-
+	<% end %>
 	
 	<table class="listing" summary="Event list">
 		<tr class="header">			
@@ -23,11 +23,13 @@
 			<td><%= event.user.name %></td>
 			<td class="actions">
 				<%= link_to("Show", event_path(event.id), :class => ' btn btn-primary btn-lg') %>
-				
+				 <% if current_user.nil? %>
+				 <% else %>
 				<%= link_to("Edit", edit_event_path(event.id), :class => 'action edit') %>
-				
+				 <% end %>
+				<% if current_user.try(:admin?) %>
 				<%= link_to("Delete", delete_event_path(event.id), :class => 'action delete') %>
-				
+				<% end %>
 			</td>
 		</tr>
 		<% end %>
