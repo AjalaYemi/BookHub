@@ -20,9 +20,15 @@
 			<td><%= @event.no_of_available_seats %></td>
 		</tr>
 		<tr>
-			<th>Organiser</th>
-			<td><%= @event.user.name %></td>
+			<th>Event Description</th>
+			<td><%= @event.description %></td>
 		</tr>
+		<% unless @event.created_by == 0 || @event.created_by == nil  %>
+			<tr>
+				<th>Created by</th>
+				<td><%= @users.find(@event.created_by).name %></td>
+			</tr>
+		<% end %>
 	</table>
 </div>
 

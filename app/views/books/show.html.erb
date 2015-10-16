@@ -28,9 +28,26 @@
 			<td><%= @book.word_count %></td>
 		</tr>
 		<tr>
+			<th>Summary</th>
+			<td><%= @book.bio %></td>
+		</tr>
+		<tr>
 			<th>Front Cover</th>
 			<td><%= image_tag @book.front_avatar_url(:thumb) %></td>
-		</tr>		
+		</tr>
+		<% unless @book.created_by == 0 %>
+			<tr>
+				<th>Created by</th>
+				<td><%= @users.find(@book.created_by).name %></td>
+			</tr>
+		<% end %>
+		<% unless @book.updated_by == 0 %>
+			<tr>
+				<th>Updated by</th>
+				<td><%= @users.find(@book.updated_by).name %></td>
+			</tr>	
+		<% end %>
+			
 	</table>
 </div>
 

@@ -4,7 +4,7 @@
 <div class="event delete">
 	<h2>Delete Event</h2>
 
-	<%= form_for(:event, :url => {:controller => 'events', :action => 'destroy', :id => @event.id}) do |f| %>
+	<%= form_for(:event, :url => {:action => 'destroy', :id => @event.id}, :method => :delete) do |f| %>
 		<p>Are you sure you want to permanently delete this Event?</p>
 
 		<p class="reference-name"><%= @event.name %></p>

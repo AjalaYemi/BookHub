@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
 
-   # layout 'admin'
    
   # before_action :confirm_logged_in, :except => [:index, :show]
    before_action :find_author
@@ -19,6 +18,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @authors = Author.sorted
+    @users = User.all
   end
 
   def new
@@ -29,6 +29,7 @@ class BooksController < ApplicationController
   def create
     # Instantiate a new object using form parameters
     @book = Book.new(book_params)
+    @book.created_by = current_user.id
     # author = Author.find(params[:author_id])
     # Save the object
     if @book.save
@@ -51,6 +52,7 @@ class BooksController < ApplicationController
   def update
      # find an existing object using form parameters
     @book = Book.find(params[:id]) 
+    @book.updated_by = current_user.id
     # author = Author.find(params[:author_id])   
     # Update the object
     if @book.update_attributes(book_params)
@@ -69,10 +71,10 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id]) 
   end
 
-  def destroy
-    @book = Book.find(params[:id]).destroy   
-    flash[:notice] = "Congratulations! The book '#{@book.name}' deleted successfully"
-    redirect_to(:action => 'index')
+  def destroy    
+      @book = Book.find(params[:id]).destroy   
+      flash[:notice] = "Congratulations! The book '#{@book.name}' deleted successfully"
+      redirect_to(:action => 'index')    
   end
 
   def find_author
@@ -84,7 +86,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache)
+    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache)
   end
 
   

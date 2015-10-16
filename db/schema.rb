@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151010015433) do
+ActiveRecord::Schema.define(version: 20151015145258) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 20151010015433) do
     t.string   "isbn",           default: ""
     t.string   "permalink"
     t.string   "front_avatar"
+    t.integer  "created_by",     default: 0
+    t.integer  "updated_by",     default: 0
+    t.text     "bio"
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
@@ -108,12 +111,11 @@ ActiveRecord::Schema.define(version: 20151010015433) do
     t.string   "venue"
     t.string   "city"
     t.integer  "no_of_available_seats"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by",            default: 0
+    t.text     "description"
   end
-
-  add_index "events", ["user_id"], name: "index_events_on_user_id"
 
   create_table "genres", force: true do |t|
     t.string   "genre"
