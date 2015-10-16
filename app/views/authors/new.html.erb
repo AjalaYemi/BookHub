@@ -3,7 +3,7 @@
 <div class="author new">
 	<h2>Create Author</h2>
 
-	<%= form_for(:author, :url => {:action => 'create'}) do |f| %>
+	<%= form_for @author, :html => {:multipart => true} do |f| %>
 
 		<%= render(:partial => "form", :locals => {:f => f}) %>
 		

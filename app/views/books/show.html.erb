@@ -31,10 +31,12 @@
 			<th>Summary</th>
 			<td><%= @book.bio %></td>
 		</tr>
+		<% unless @book.front_avatar_url == nil %>
 		<tr>
 			<th>Front Cover</th>
 			<td><%= image_tag @book.front_avatar_url(:thumb) %></td>
 		</tr>
+		<% end %>
 		<% unless @book.created_by == 0 %>
 			<tr>
 				<th>Created by</th>

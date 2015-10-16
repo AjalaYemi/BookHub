@@ -20,4 +20,10 @@
 				<th><%= f.label(:description, "Event Details") %></th>
 				<td><%= f.text_area(:description) %></td>
 			</tr>
+			<tr>
+				<th><%= f.label(:avatar, "Event Flyer") %></th>
+				<td><%= image_tag(@event.avatar_url(:thumb)) if @event.avatar? %>
+					<%= f.file_field(:avatar) %></td>
+				 <%= f.hidden_field(:avatar_cache) %>
+			</tr>
 		</table>

@@ -1,12 +1,8 @@
 <% @page_title = @event.name %>
 <%= link_to("<< Back to List", events_path, :class => 'back-link') %>
 <div class="event show">
-	<h2>Show Event</h2>
+	<h2><%= @event.name %></h2>
 	<table summary="Event detail view">
-		<tr>
-			<th>Name</th>
-			<td><%= @event.name %></td>
-		</tr>
 		<tr>
 			<th>Venue</th>
 			<td><%= @event.venue %></td>
@@ -23,6 +19,13 @@
 			<th>Event Description</th>
 			<td><%= @event.description %></td>
 		</tr>
+		<% unless @event.avatar_url == nil  %>
+			<tr>
+				<th>Flyer</th>
+				<td><%= image_tag @event.avatar_url(:thumb) %></td>
+			</tr>
+		<% end %>
+		
 		<% unless @event.created_by == 0 || @event.created_by == nil  %>
 			<tr>
 				<th>Created by</th>

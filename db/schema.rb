@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151015145258) do
+ActiveRecord::Schema.define(version: 20151016112837) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20151015145258) do
     t.text     "bio"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "avatar"
   end
 
   create_table "authors_books", id: false, force: true do |t|
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(version: 20151015145258) do
     t.datetime "updated_at"
     t.integer  "created_by",            default: 0
     t.text     "description"
+    t.string   "avatar"
   end
 
   create_table "genres", force: true do |t|

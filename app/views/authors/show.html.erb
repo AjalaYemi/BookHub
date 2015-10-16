@@ -15,14 +15,13 @@
 			<th>Bio</th>
 			<td><%= @author.bio %></td>
 		</tr>
-		<tr>
-			<th>Created</th>
-			<td><%= @author.created_at %></td>
-		</tr>
-		<tr>
-			<th>Updated</th>
-			<td><%= @author.updated_at %></td>
-		</tr>
+		<% unless @author.avatar_url == nil %>
+			<tr>
+				<th>Author Picture</th>
+				<td><%= image_tag @author.avatar_url(:thumb) %></td>
+			</tr>
+		<% end %>		
+		
 	</table>
 </div>
 

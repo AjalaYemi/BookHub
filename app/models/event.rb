@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-
+	mount_uploader :avatar, AvatarUploader
 	has_and_belongs_to_many :authors
 	has_many :comments
 	
