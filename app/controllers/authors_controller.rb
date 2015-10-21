@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
   # layout false
   
   
-  before_action :confirm_logged_in, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
 
   def index
     @authors = Author.sorted

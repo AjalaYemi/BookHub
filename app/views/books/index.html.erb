@@ -1,33 +1,27 @@
 <% @page_title = "All Books" %>
-<div class = "books index">
-	<h2>Books</h2>
-	<%=  %>
-	<% if user_signed_in? %>
-	<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + " Add New Book", {:action => 'new'}, :class => 'action new') %>
-	<% end %>
-
+<div class = "books index container">
+	<h2 class="text-center">All Books</h2>
 	
-	<table class="listing" summary="Book list">
-		<tr class="header">			
-			<th>Name</th>
-			<th>Author</th>
-			<th>Publisher</th>
-			<th>Page Count</th>
-			<th>Word Count</th>
-			<th>ISBN</th>
-			<th>Published</th>
-			<th>Actions</th>
-		</tr>
+	
+	<div class="row">		
+			<div class="col-sm-3"><strong class="centered">Title</strong></div>
+			<div class="col-sm-3"><strong class="centered">Author</strong></div>
+			<div class="col-sm-2"><strong class="centered">Publisher</strong></div>
+			<div class="col-sm-2"><strong class="centered">Published</strong></div>
+			<div class="col-sm-2 centered">
+				<% if user_signed_in? %>
+					<%= link_to("Add New Book", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
+				<% end %>				
+			</div>		
+	</div>
+	<br />
 		<% @books.each do |book| %>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td><%= book.name %></td>
-			<td><%= @authors.find_by_id(book.author_id).name %></td>
-			<td><%= book.publisher %></td>
-			<td><%= book.page_count %></td>
-			<td><%= book.word_count %></td>
-			<td><%= book.isbn %></td>
-			<td><%= book.published_year %></td>
-			<td class="actions">
+		<div class="row <%= cycle('odd', 'even') %>">
+			<div class="col-sm-3"><%= book.name %></div>
+			<div class="col-sm-3"><%= @authors.find_by_id(book.author_id).name %></div>
+			<div class="col-sm-2"><%= book.publisher %></div>			
+			<div class="col-sm-2"><%= book.published_year.strftime("%B, %Y") %></div>
+			<div class="col-sm-2">
 				<%= link_to("Show", book_path(book.id), :class => ' btn btn-primary btn-sm') %>
 				 <% unless current_user.nil? %>				 
 				<%= link_to("Edit", edit_book_path(book.id), :class => 'btn btn-info btn-sm') %>				 
@@ -35,8 +29,7 @@
 				<%= link_to("Delete", delete_book_path(book.id), :class => 'btn btn-warning btn-sm') %>
 				<% end %>
 				<% end %>
-			</td>
-		</tr>
+			</div>
+		</div>
 		<% end %>
-	</table>
 </div>
