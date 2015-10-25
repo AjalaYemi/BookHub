@@ -27,7 +27,7 @@ gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-# gem 'turbolinks'
+gem 'turbolinks'
 
 # For Dropdown to work well with Javascript
 gem 'jquery-turbolinks'
@@ -68,6 +68,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-linkedin-oauth2'
 
+# (1) Add the functionalities of these later
 # For mail to be sent in the background for Devise
 gem 'delayed_job_active_record'
 
@@ -80,3 +81,11 @@ gem 'devise_invitable'
 gem "devise-async"
 gem 'devise_campaignable'
 
+ # (2) Add the functionalities of these later
+gem 'tabulous'
+gem 'formtastic'
+gem 'magnific-popup-rails'
+gem 'elasticsearch-model' # for elasticsearch
+gem 'elasticsearch-rails' # for elasticsearch
+
+gem 'will_paginate'
