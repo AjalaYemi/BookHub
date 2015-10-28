@@ -31,19 +31,20 @@ html {
 }
 
 footer {
-	/*background: #333;
-	color: #eee;*/
+	background: #333;
+	color: #eee;
 	font-size: 11px;
 	padding: 20px;
-	position: absolute;
-  	bottom: 0;
+	/*position: absolute;*/
+  /*	bottom: 0;
   	width: 100%;
-  /* Set the fixed height of the footer here */
+   Set the fixed height of the footer here 
   	height: 110px;
-  	background-color: #f5f5f5;
+  	background-color: #f5f5f5;*/
 }
 
-
+.odd { background: #f5f5f5; }
+.even { background: none; }
 /* --------------------------------------
    Typography
    -------------------------------------- */

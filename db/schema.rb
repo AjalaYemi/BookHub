@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151016112837) do
+ActiveRecord::Schema.define(version: 20151027084547) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -118,6 +118,13 @@ ActiveRecord::Schema.define(version: 20151016112837) do
     t.text     "description"
     t.string   "avatar"
   end
+
+  create_table "events_users", id: false, force: true do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+  end
+
+  add_index "events_users", ["event_id", "user_id"], name: "index_events_users_on_event_id_and_user_id"
 
   create_table "genres", force: true do |t|
     t.string   "genre"

@@ -7,9 +7,10 @@ class User < ActiveRecord::Base
     attr_accessor :login
 
 	has_many :reviews
-	has_many :comments	
+	has_many :comments
 	has_many :book_exchanges
 	has_many :books, :through => :book_exchanges
+  has_and_belongs_to_many :events
 
 	scope :sorted, lambda { order("users.last_name ASC, users.first_name ASC")}
 	scope :newest_first, lambda { order("users.created_at DESC")}

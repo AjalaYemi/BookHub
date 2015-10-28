@@ -1,38 +1,55 @@
 <% @page_title = @event.name %>
 <%= link_to("<< Back to List", events_path, :class => 'back-link') %>
-<div class="event show">
-	<h2><%= @event.name %></h2>
-	<table summary="Event detail view">
-		<tr>
-			<th>Venue</th>
-			<td><%= @event.venue %></td>
-		</tr>
-		<tr>
-			<th>Town/City</th>
-			<td><%= @event.city %></td>
-		</tr>
-		<tr>
-			<th>Number of Spaces</th>
-			<td><%= @event.no_of_available_seats %></td>
-		</tr>
-		<tr>
-			<th>Event Description</th>
-			<td><%= @event.description %></td>
-		</tr>
-		<% unless @event.avatar_url == nil  %>
-			<tr>
-				<th>Flyer</th>
-				<td><%= image_tag @event.avatar_url(:thumb) %></td>
-			</tr>
+<div class="container">
+	<h2 class="centered"><%= @event.name %></h2>
+	<% if user_signed_in? %>
+		<% if @event.users.include?current_user %>
+			<h4 class="alert-notice centered">You are registered for this event</h4>
+			<%= link_to("De-register for the Event", {:action => 'miss', :id => @event.id}, :class => 'btn-sm btn-primary text-center') %>	
+		<% else %>
+			<%= link_to("Register for Event", {:action => 'attend', :id => @event.id}, :class => 'btn-sm btn-primary text-center') %>	
+			
 		<% end %>
-		
-		<% unless @event.created_by == 0 || @event.created_by == nil  %>
-			<tr>
-				<th>Created by</th>
-				<td><%= @users.find(@event.created_by).name %></td>
-			</tr>
+
+	<% end %></div>
+	<div class="container">
+		<div class="row">		
+			<div class="col-sm-4"><strong>Venue</strong></div>
+			<div class="col-sm-8"><%= @event.venue %></div>
+		</div>
+		<br />
+		<div class="row">		
+			<div class="col-sm-4"><strong>Town/City</strong></div>
+			<div class="col-sm-8"><%= @event.city %></div>
+		</div>
+		<br />
+		<div class="row">		
+			<div class="col-sm-4"><strong>Number of Spaces</strong></div>
+			<div class="col-sm-8"><%= @event.no_of_available_seats %></div>
+		</div>			
+		<br />
+		<div class="row">		
+			<div class="col-sm-4"><strong>Event Description</strong></div>
+			<div class="col-sm-8"><%= @event.description %></div>
+		</div>
+		<br />	
+		<% unless @event.avatar_url == nil  %>			
+		<div class="row">		
+			<div class="col-sm-4 centered"><!-- <strong>Flyer</strong> --></div>
+			<div class="col-sm-8"> <%= link_to image_url(@event.avatar_url(:normal)) do %>
+				<%= image_tag @event.avatar_url(:thumb) %>
+				<% end %>
+			</div>
+		</div>
 		<% end %>
-	</table>
+		<br />
+		<% unless @event.created_by == 0 || @event.created_by == nil  %>		
+		<div class="row">		
+			<div class="col-sm-4 centered"><strong>Created by</strong></div>
+			<div class="col-sm-8"><strong><%= @users.find(@event.created_by).name %></strong></div>
+		</div>				
+		<% end %>
+	</div>	
 </div>
 
 
@@ -47,4 +64,8 @@
 	<%= comment.comment %>, by <%= find_user(comment.user_id) %>
 	<% end %></td>
 <% end %>
-<%= link_to("Add Review", {:controller => 'comments', :action => 'new'}) %>
+<%= link_to("Add Comments", {:controller => 'comments', :action => 'new'}) %>
+
+<br />
+<br />
+<br />

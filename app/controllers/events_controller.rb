@@ -11,11 +11,11 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new    
+    @event = Event.new
   end
 
   def create
-    @event = Event.new(event_params)    
+    @event = Event.new(event_params)
     @event.created_by = current_user.id
     if @event.save
       flash[:notice] = "Event created successfully"
@@ -31,7 +31,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
   end
 
-  def update    
+  def update
       @event = Event.find(params[:id])
       if @event.created_by == current_user.id || current_user.try(:admin?)
         if @event.update_attributes(event_params)
@@ -39,13 +39,13 @@ class EventsController < ApplicationController
             redirect_to(:action => 'show', :id => @event.id)
         else
             # Error handling for failure
-            flash[:notice] = "Something went wrong while updating the event."           
+            flash[:notice] = "Something went wrong while updating the event."
             render('edit' , :id => @event.id)
       end
     else
       flash[:notice] = "You are not authorized to alter this as you are neither the creator nor an admin"
       redirect_to('index')
-    end  
+    end
   end
 
   def delete
@@ -54,12 +54,41 @@ class EventsController < ApplicationController
 
   def destroy
     event = Event.find(params[:id]).destroy
-    if event.created_by == current_user.id || current_user.try(:admin?)      
+    if event.created_by == current_user.id || current_user.try(:admin?)
       flash[:notice] = "The event #{event.name} has been successfully deleted"
       redirect_to(:action => 'index')
     else
       flash[:notice] = "You are not authorized to alter this as you are neither the creator nor an admin"
       redirect_to('index')
+    end
+  end
+
+
+   def attend
+    @event = Event.find(params[:id])
+    @user = User.find(current_user.id)
+    if @event.users.include?current_user && @event.users << @user
+       flash[:notice] = "You have been registered"
+       @users = User.all
+       redirect_to(:action => 'show', :id => @event.id)
+    else
+       flash[:notice] = "Something happened and you were not registered. Try again later"
+       @users = User.all
+       redirect_to(:action => 'show', :id => @event.id)
+    end
+  end
+
+  def miss
+    @event = Event.find(params[:id])
+    @user = User.find(current_user.id)
+    if @event.users.include?current_user && @event.users.delete(@user)
+       flash[:notice] = "You have been de-registered"
+       @users = User.all
+       redirect_to(:action => 'show', :id => @event.id)
+    else
+       flash[:notice] = "Something happened and you were not registered. Try again later"
+       @users = User.all
+       redirect_to(:action => 'show', :id => @event.id)
     end
   end
 
