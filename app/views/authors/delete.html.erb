@@ -3,13 +3,13 @@
 <div class="Author delete">
 	<h2>Delete Author</h2>
 
-	<%= form_for(:author, :url => {:controller => 'authors', :action => 'destroy', :id => @author.id}) do |f| %>
+	
 		<p>Are you sure you want to permanently delete this subject?</p>
 
 		<p class="reference-name"><%= @author.name %></p>
 
 		<div class="form-buttons">
-			<%= submit_tag("Delete Author") %>
+			<%= button_to("Delete Author", { :action => 'destroy', :id => @author.id}, method: :delete, data: {confirm: 'Are you sure?'},  :class => 'btn btn-danger btn-lg') %>
 		</div>
 	<% end %>
 </div>

@@ -1,44 +1,55 @@
 Rails.application.routes.draw do
 
+  get 'contacts/new'
+
   devise_for :users
 
   authenticated :user do
     root to: 'public#show', as: :authenticated_root
   end
-  
+
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end
   root to: 'public#index'
 
-  resources :books do 
-    member do 
+  resources :books do
+    member do
       get :delete
-    end    
+    end
   end
 
-  resources :events do 
-    member do 
+  resources :events do
+    member do
       get :delete
-    end    
+    end
   end
 
-  # resources :public do 
-  #   member do 
+  resources :authors do
+    member do
+      get :delete
+    end
+  end
+
+  match '/contact_us', to: 'contacts#new', via: 'get'
+  resources "contacts", only: [:new, :create]
+
+  # resources :public do
+  #   member do
   #     get :contact
   #   end
   # end
 
-  # resources :book_exchanges do 
-  #   collection do 
+  # resources :book_exchanges do
+  #   collection do
   #     get :swap
-  #   end  
+  #   end
 
-  #   collection do 
+  #   collection do
   #     get :donate
-  #   end     
+  #   end
   # end
-  # 
+  #
   devise_scope :user do
     get 'users/sign_out' => 'devise/sessions#destroy'
   end

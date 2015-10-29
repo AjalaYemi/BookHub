@@ -17,8 +17,4 @@ class PublicController < ApplicationController
     end
     redirect_to(authenticated_root_path)
   end
-
-  def contact
-  end
-
 end

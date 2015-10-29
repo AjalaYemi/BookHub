@@ -82,10 +82,21 @@ gem "devise-async"
 gem 'devise_campaignable'
 
  # (2) Add the functionalities of these later
-gem 'tabulous'
-gem 'formtastic'
+# gem 'tabulous'
+# gem 'formtastic'
 gem 'magnific-popup-rails'
 gem 'elasticsearch-model' # for elasticsearch
 gem 'elasticsearch-rails' # for elasticsearch
 
 gem 'will_paginate'
+
+# For Mailing
+gem 'mail_form'
+gem 'simple_form'
+
+# For User notifications
+gem 'mailboxer'
+# gem 'public_activity'
+
+# Effizy Al
+gem "gritter"

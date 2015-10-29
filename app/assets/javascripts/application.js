@@ -16,4 +16,5 @@
 //= require bootstrap/dropdown
 //= require turbolinks
 //= require magnific-popup
+//= require gritter
 //= require_tree .

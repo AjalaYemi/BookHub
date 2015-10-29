@@ -45,8 +45,8 @@ class AuthorsController < ApplicationController
   end
 
   def destroy
-    author = Author.find(params[:id]).destroy
-    flash[:notice] = "The author '#{author.first_name} #{author.last_name}' has been successfully deleted"
+    @author = Author.find(params[:id]).destroy
+    flash[:notice] = "The author '#{@author.first_name} #{@author.last_name}' has been successfully deleted"
     redirect_to(:action => 'index')
   end
 

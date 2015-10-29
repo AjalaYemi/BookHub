@@ -21,14 +21,12 @@
               <li><%= link_to("Events", events_path) %></li>
               <li><%= link_to("Book Swap", {:controller => '/book_exchanges', :action => 'swap'}) %></li>
               <li><%= link_to("Donate Books", {:controller => '/book_exchanges', :action => 'donate'}) %></li>
-              <li><%= link_to("Contact Us", {:controller => '/public', :action => 'contact'}) %></li>
+              <li><%= link_to("Contact Us", {:controller => '/contacts', :action => 'new'}) %></li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                 <input type="text" class="form-control" placeholder="Search">
-              </div>
-             <button type="submit" class="btn btn-default">Submit</button>
-            </form>
+            <form class="navbar-form pull-left">
+              <input type="text" class="form-control" placeholder="Search this site..." id="searchInput">
+              <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+            </form><!-- end navbar-form -->
       			<ul class="nav navbar-nav pull-right">
         			<% if user_signed_in? %>
           				<li class="dropdown">
