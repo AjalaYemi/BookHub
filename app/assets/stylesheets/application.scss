@@ -30,3 +30,7 @@
 .centered {
 	text-align: center;
 }
+
+.pagination {
+  @extend .pagination;
+}

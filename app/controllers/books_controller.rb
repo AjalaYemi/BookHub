@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
-   
+
   # before_action :confirm_logged_in, :except => [:index, :show]
    before_action :find_author
 
@@ -9,10 +9,10 @@ class BooksController < ApplicationController
     if @author
       @books = Book.where(:author_id => params[:author_id]).sorted
     else
-      @books = Book.sorted
+      @books = Book.sorted.paginate(page: params[:page], per_page: 10)
       @authors = Author.sorted
     end
-        
+
   end
 
   def show
@@ -41,7 +41,7 @@ class BooksController < ApplicationController
     # If save fails, redisplay the form so the user can fix the problems
     @authors = Author.sorted
     render('new')
-    end 
+    end
   end
 
   def edit
@@ -51,9 +51,9 @@ class BooksController < ApplicationController
 
   def update
      # find an existing object using form parameters
-    @book = Book.find(params[:id]) 
+    @book = Book.find(params[:id])
     @book.updated_by = current_user.id
-    # author = Author.find(params[:author_id])   
+    # author = Author.find(params[:author_id])
     # Update the object
     if @book.update_attributes(book_params)
     # If update succeeds, redirect to the index action
@@ -64,17 +64,17 @@ class BooksController < ApplicationController
     # If save fails, redisplay the form so the user can fix the problems
     @authors = Author.sorted
     render('edit', :id => @book.id)
-    end 
+    end
   end
 
   def delete
-    @book = Book.find(params[:id]) 
+    @book = Book.find(params[:id])
   end
 
-  def destroy    
-      @book = Book.find(params[:id]).destroy   
+  def destroy
+      @book = Book.find(params[:id]).destroy
       flash[:notice] = "Congratulations! The book '#{@book.name}' deleted successfully"
-      redirect_to(:action => 'index')    
+      redirect_to(:action => 'index')
   end
 
   def find_author
@@ -82,13 +82,13 @@ class BooksController < ApplicationController
       @author = Author.find(params[:author_id])
     end
   end
-  
+
   private
 
   def book_params
     params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache)
   end
 
-  
+
 
 end

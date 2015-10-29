@@ -1,28 +1,33 @@
-<div class = "authors index">
-	<h2>Authors</h2>
+<% @page_title = "All Authors" %>
+<div class = "container">
+	<h2 class="text-center"> All Authors</h2>
 
-	<%= link_to("Add New Author", {:action => 'new'}, :class => 'action new') %>
+	
 
-	<table class="listing" summary="Author list">
-		<tr class="header">
-			
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Bio</th>
-			<th>Actions</th>
-		</tr>
+	<div class="row">
+		<div class="col-lg-3"><strong class="centered">First Name</strong></div>
+		<div class="col-lg-3"><strong class="centered">Last Name</strong></div>
+		<div class="col-lg-3"><strong class="centered">Bio</strong></div>
+		<div class="col-lg-3">
+			<% if user_signed_in? %>
+					<%= link_to("Add New Author", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
+			<% end %>
+		</div>		
+	</div> <!-- end row -->
+	<br />
 		<% @authors.each do |author| %>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td><%= author.first_name %></td>
-			<td><%= author.last_name %></td>
-			<td><%= author.bio %></td>
-			<td class="actions">
-				<%= link_to("View Books", {:controller => 'books', :author_id => author.id}, :class => 'action show') %>
+		<div class="row <%= cycle('odd', 'even') %>">
+			<div class="col-sm-3"><%= author.first_name %></div>
+			<div class="col-sm-3"><%= author.last_name %></div>
+			<div class="col-sm-3"><%= author.bio %></div>
+			<div class="col-sm-3">				
 				<%= link_to("Show", {:action => 'show', :id => author.id}, :class => ' btn btn-primary btn-sm') %>
 				<%= link_to("Edit", {:action => 'edit', :id => author.id}, :class => 'btn btn-info btn-sm') %>
 				<%= link_to("Delete", {:action => 'delete', :id => author.id}, :class => 'btn btn-warning btn-sm') %>
-			</td>
-		</tr>
+			</div>	
+		</div> <!-- end row -->	
 		<% end %>
-	</table>
-</div>
+	<br />
+	<%= will_paginate @authors %>
+	<br />
+</div><!-- end container -->
