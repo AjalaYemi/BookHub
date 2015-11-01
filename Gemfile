@@ -5,8 +5,11 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.9'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', group: [:development, :test]
+
+# For Heroku deployment
 gem 'rails_12factor', group: :production
 gem 'pg', group: :production
+gem 'bonsai-elasticsearch-rails', group: :production # for Bonsai plugin on heroku
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
@@ -96,7 +99,10 @@ gem 'simple_form'
 
 # For User notifications
 gem 'mailboxer'
-# gem 'public_activity'
+gem 'public_activity'
 
 # Effizy Al
 gem "gritter"
+
+# for human readable url
+gem 'stringex'

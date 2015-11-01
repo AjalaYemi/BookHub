@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'contacts/new'
-
   devise_for :users
 
   authenticated :user do
@@ -33,6 +31,7 @@ Rails.application.routes.draw do
 
   match '/contact_us', to: 'contacts#new', via: 'get'
   resources "contacts", only: [:new, :create]
+  get 'search', to: 'search#search'
 
   # resources :public do
   #   member do

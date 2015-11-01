@@ -12,7 +12,7 @@ class Author < ActiveRecord::Base
 		where(["first_name LIKE ?", "%#{query}%"])
 	}
 
-	
+
 	def name
 		first_name + " " + last_name
 	end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151027084547) do
+ActiveRecord::Schema.define(version: 20151101073547) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20151027084547) do
     t.integer  "word_count"
     t.integer  "page_count"
     t.string   "isbn",           default: ""
-    t.string   "permalink"
+    t.string   "url"
     t.string   "front_avatar"
     t.integer  "created_by",     default: 0
     t.integer  "updated_by",     default: 0
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20151027084547) do
   end
 
   add_index "books", ["author_id"], name: "index_books_on_author_id"
-  add_index "books", ["permalink"], name: "index_books_on_permalink"
+  add_index "books", ["url"], name: "index_books_on_url"
 
   create_table "books_genres", id: false, force: true do |t|
     t.integer "book_id"
@@ -185,4 +185,5 @@ ActiveRecord::Schema.define(version: 20151027084547) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   add_index "users", ["username"], name: "index_users_on_username"
 
+  Foreigner.load
 end

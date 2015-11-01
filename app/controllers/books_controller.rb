@@ -16,7 +16,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.find_by_url(params[:id])
     @authors = Author.sorted
     @users = User.all
   end
@@ -45,13 +45,13 @@ class BooksController < ApplicationController
   end
 
   def edit
-    @book = Book.find(params[:id])
+    @book = Book.find_by_url(params[:id])
     @authors = Author.sorted
   end
 
   def update
      # find an existing object using form parameters
-    @book = Book.find(params[:id])
+    @book = Book.find_by_url(params[:id])
     @book.updated_by = current_user.id
     # author = Author.find(params[:author_id])
     # Update the object
@@ -68,11 +68,11 @@ class BooksController < ApplicationController
   end
 
   def delete
-    @book = Book.find(params[:id])
+    @book = Book.find_by_url(params[:id])
   end
 
   def destroy
-      @book = Book.find(params[:id]).destroy
+      @book = Book.find_by_url(params[:id]).destroy
       flash[:notice] = "Congratulations! The book '#{@book.name}' deleted successfully"
       redirect_to(:action => 'index')
   end
@@ -86,7 +86,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache)
+    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache, :url)
   end
 
 
