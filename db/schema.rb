@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101073547) do
+ActiveRecord::Schema.define(version: 20151105152159) do
 
   create_table "authors", force: true do |t|
     t.string   "first_name", limit: 25,              null: false
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20151101073547) do
     t.integer  "created_by",            default: 0
     t.text     "description"
     t.string   "avatar"
+    t.string   "url"
   end
 
   create_table "events_users", id: false, force: true do |t|
@@ -147,6 +148,7 @@ ActiveRecord::Schema.define(version: 20151101073547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "title"
+    t.string   "url"
   end
 
   add_index "reviews", ["book_id"], name: "index_reviews_on_book_id"

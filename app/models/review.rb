@@ -1,4 +1,7 @@
 class Review < ActiveRecord::Base
+
+  acts_as_url :title, blacklist: %w{new search contact_us}
+
 	belongs_to :book
 	belongs_to :user
 	has_many :comments
@@ -8,4 +11,9 @@ class Review < ActiveRecord::Base
 	scope :search, lambda {|query|
 		where(["name LIKE ?", "%#{query}%"])
 	}
+
+
+  def to_param
+    url # or whatever you set :url_attribute to
+  end
 end

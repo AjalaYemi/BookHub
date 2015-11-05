@@ -36,7 +36,7 @@ class BooksController < ApplicationController
     # If save succeeds, redirect to the index action
     # @book.authors << author
     flash[:notice] = "Congratulations! New Book Created."
-    redirect_to(:action => 'index')
+    redirect_to books_path
     else
     # If save fails, redisplay the form so the user can fix the problems
     @authors = Author.sorted
@@ -59,11 +59,11 @@ class BooksController < ApplicationController
     # If update succeeds, redirect to the index action
     # @book.authors << author
     flash[:notice] = "Congratulations! Book successfully updated."
-    redirect_to(:action => 'show', :id => @book.id)
+    redirect_to book_path(@book)
     else
     # If save fails, redisplay the form so the user can fix the problems
     @authors = Author.sorted
-    render('edit', :id => @book.id)
+    render edit_book_path(@book)
     end
   end
 
@@ -88,7 +88,4 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache, :url)
   end
-
-
-
 end

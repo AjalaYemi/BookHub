@@ -8,7 +8,7 @@ class Book < ActiveRecord::Base
 	include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
 
-  acts_as_url :name
+  acts_as_url :name, blacklist: %w{new search contact_us}
 
 	mount_uploader :front_avatar, AvatarUploader
 	has_many :reviews

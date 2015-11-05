@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    @event = Event.find_by_url(params[:id])
     @users = User.all
   end
 
@@ -19,7 +19,7 @@ class EventsController < ApplicationController
     @event.created_by = current_user.id
     if @event.save
       flash[:notice] = "Event created successfully"
-      redirect_to(:action => 'index')
+      redirect_to events_path
     else
       # Error handling for failure
       flash[:notice] = "Something went wrong while creating the event."
@@ -28,19 +28,19 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    @event = Event.find_by_url(params[:id])
   end
 
   def update
-      @event = Event.find(params[:id])
+      @event = Event.find_by_url(params[:id])
       if @event.created_by == current_user.id || current_user.try(:admin?)
         if @event.update_attributes(event_params)
             flash[:notice] = "Event updated successfully"
-            redirect_to(:action => 'show', :id => @event.id)
+            redirect_to event_path(@event)
         else
             # Error handling for failure
             flash[:notice] = "Something went wrong while updating the event."
-            render('edit' , :id => @event.id)
+            render edit_event_path(@event)
       end
     else
       flash[:notice] = "You are not authorized to alter this as you are neither the creator nor an admin"
@@ -49,11 +49,11 @@ class EventsController < ApplicationController
   end
 
   def delete
-    @event = Event.find(params[:id])
+    @event = Event.find_by_url(params[:id])
   end
 
   def destroy
-    event = Event.find(params[:id]).destroy
+    event = Event.find_by_url(params[:id]).destroy
     if event.created_by == current_user.id || current_user.try(:admin?)
       flash[:notice] = "The event #{event.name} has been successfully deleted"
       redirect_to(:action => 'index')
@@ -65,7 +65,7 @@ class EventsController < ApplicationController
 
 
    def attend
-    @event = Event.find(params[:id])
+    @event = Event.find_by_url(params[:id])
     @user = User.find(current_user.id)
     if @event.users.include?current_user && @event.users << @user
        flash[:notice] = "You have been registered"
@@ -79,7 +79,7 @@ class EventsController < ApplicationController
   end
 
   def miss
-    @event = Event.find(params[:id])
+    @event = Event.find_by_url(params[:id])
     @user = User.find(current_user.id)
     if @event.users.include?current_user && @event.users.delete(@user)
        flash[:notice] = "You have been de-registered"
@@ -95,6 +95,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :venue, :city, :no_of_available_seats, :user_id, :description, :avatar, :avatar_cache)
+    params.require(:event).permit(:name, :venue, :city, :no_of_available_seats, :user_id, :description, :avatar, :avatar_cache, :url)
   end
 end

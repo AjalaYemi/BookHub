@@ -34,9 +34,9 @@ class AuthorsController < ApplicationController
     @author = Author.find(params[:id])
     if @author.update_attributes(author_params)
       flash[:notice] = "Author Updated successfully"
-      redirect_to(:action => 'show', :id => @author.id)
+      redirect_to author_path(@author)
     else
-      render 'edit'
+      render edit_author_path(@author)
     end
   end
 

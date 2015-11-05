@@ -29,6 +29,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :reviews do
+    member do
+      get :delete
+    end
+  end
+
   match '/contact_us', to: 'contacts#new', via: 'get'
   resources "contacts", only: [:new, :create]
   get 'search', to: 'search#search'

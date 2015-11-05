@@ -1,16 +1,16 @@
 class ReviewsController < ApplicationController
 
-  before_action :authenticate_user!
-  
+  # before_action :authenticate_user!
+
   def index
-    @reviews = Review.sorted
+    @reviews = Review.sorted.paginate(page: params[:page], per_page: 10)
     # @users = User.all
     # @books = Book.all
     @authors = Author.sorted
   end
 
   def show
-    @review = Review.find(params[:id])
+    @review = Review.find_by_url(params[:id])
   end
 
   def new
@@ -19,11 +19,12 @@ class ReviewsController < ApplicationController
     @users = User.all
   end
 
-  def create    
+  def create
     @review = Review.new(review_params)
+    @review.user_id = current_user.id
     if @review.save
       flash[:notice] = "New review created successfully"
-      redirect_to(:action => 'index')
+      redirect_to review_path(@review)
     else
       # Error display and login
       flash[:notice] = "Something went wrong creating the new Review"
@@ -32,29 +33,30 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = Review.find_by_url(params[:id])
     @books = Book.all
     @users = User.all
   end
 
   def update
-    @review = Review.find(params[:id])
+    @review = Review.find_by_url(params[:id])
+    @review.user_id = current_user.id
     if @review.update_attributes(review_params)
       flash[:notice] = "Review updated successfully"
-      redirect_to(:action => 'show', :id => @review.id)
+      redirect_to review_path(@review)
     else
       # Error that the review didn't update
       flash[:notice] = "Something happened and the review didnt save"
-      render('edit', :id => @review.id)
+      render edit_review_path(@review)
     end
   end
 
   def delete
-    @review = Review.find(params[:id])
+    @review = Review.find_by_url(params[:id])
   end
 
   def destroy
-    review = Review.find(params[:id]).destroy
+    review = Review.find_by_url(params[:id]).destroy
     flash[:notice] = "The review '#{review.title}' has been successfully deleted"
     redirect_to(:action => 'index')
   end
@@ -62,6 +64,6 @@ class ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:review, :book_id, :user_id, :title)
+    params.require(:review).permit(:review, :book_id, :user_id, :title, :url)
   end
 end
