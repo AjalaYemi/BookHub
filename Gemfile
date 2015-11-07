@@ -106,3 +106,8 @@ gem "gritter"
 
 # for human readable url
 gem 'stringex'
+
+# To test mailing in test and dev environment
+group :development, :test do
+gem 'foreman'
+end

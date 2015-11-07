@@ -99,6 +99,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     foreigner (1.7.4)
       activerecord (>= 3.0.0)
+    foreman (0.78.0)
+      thor (~> 0.19.1)
     fssm (0.2.10)
     gibbon (2.0.0)
       faraday (>= 0.9.1)
@@ -262,6 +264,7 @@ DEPENDENCIES
   devise_zxcvbn
   elasticsearch-model
   elasticsearch-rails
+  foreman
   gritter
   jbuilder (~> 2.0)
   jquery-rails

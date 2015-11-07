@@ -1,0 +1,8 @@
+<%= form_for @author, :html => {:multipart => true} do |f| %>
+
+		<%= render(:partial => "authors/form", :locals => {:f => f}) %>
+		
+		<div class="form-buttons">
+			<%= submit_tag("Create Author") %>
+		</div>
+<% end %>
