@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	  <title>BookHub <%= " | #{@page_title} " if @page_title %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>    
-    <%= csrf_meta_tags %>
-	</head>
-	<body>
-		<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse" role="navigation">
   			<div class="container">
     			<div class="navbar-header">
+            <button class="btn btn-success navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <!-- <span class="glyphicon glyphicon-chevron-down"></span> --><span class="caret"></span>
+            </button>
            <% if user_signed_in? %>
             <%= link_to(image_tag('logo.jpg', :size => '110x30', :alt => 'Home'), authenticated_root_path, class: 'navbar-brand') %>              
            <% else %> 
               <%= link_to 'BookHub', root_path, class: 'navbar-brand' %>
            <% end %>
-    			</div>
-    			<div id="navbar">
+    			</div> <!-- end navbar header -->
+    			<div id="navbar" class="navbar-collapse collapse">
      			  <ul class="nav navbar-nav">
-              <li><%= link_to("Books", books_path) %></li>
-              <li><%= link_to("Events", events_path) %></li>
-              <li><%= link_to("Book Swap", {:controller => '/book_exchanges', :action => 'swap'}) %></li>
-              <li><%= link_to("Donate Books", {:controller => '/book_exchanges', :action => 'donate'}) %></li>
-              <li><%= link_to("Contact Us", 'contact_us') %></li>
+              <li class="nav"><%= nav_link 'Books', books_path %></li> 
+              <li class="nav"><%= nav_link 'Events', events_path %></li>
+              <li class="nav"><%= nav_link 'Book Swap', {:controller => '/book_exchanges', :action => 'swap'} %></li>
+              <li class="nav"><%= nav_link 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'} %></li>
+              <li class="nav"><%= link_to("Contact Us", '/contact_us') %></li>
             </ul>
             <form class="navbar-form navbar-left" role="search">
               <div class="form-group">
@@ -51,9 +45,6 @@
           				<li><%= link_to 'Sign Up', new_user_registration_path %></li>
         			<% end %>
       			</ul>
-    			</div>
-  			</div>
+    			</div><!-- end navbar collapse -->
+  			</div><!-- end container -->
 		</nav>
-		<div id="header">
-			<h1 class="centered"><%= link_to "BookHub", root_path %></h1>
-		</div>

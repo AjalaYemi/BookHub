@@ -15,6 +15,8 @@ gem 'bonsai-elasticsearch-rails', group: :production # for Bonsai plugin on hero
 gem 'sass-rails', '~> 4.0.3'
 # For Bootstrap Sass
 gem 'bootstrap-sass'
+#  add browser vendor prefixes automatically
+gem 'autoprefixer-rails'
 # For responsive website
 gem 'susy'
 
@@ -86,7 +88,7 @@ gem 'devise_campaignable'
 
  # (2) Add the functionalities of these later
 # gem 'tabulous'
-# gem 'formtastic'
+# gem 'formtastic-bootstrap'
 gem 'magnific-popup-rails'
 gem 'elasticsearch-model' # for elasticsearch
 gem 'elasticsearch-rails' # for elasticsearch
@@ -95,6 +97,7 @@ gem 'will_paginate'
 
 # For Mailing
 gem 'mail_form'
+# For Contact form
 gem 'simple_form'
 
 # For User notifications

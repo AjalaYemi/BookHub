@@ -33,6 +33,16 @@
 	text-align: center;
 }
 
+**********************************
+* For pagination
 .pagination {
-  @extend .pagination;
+  @extend .pagination-lg;
+}
+
+.previous_page{
+	@extend .previous
+}
+
+.next_page{
+	@extend .next
 }

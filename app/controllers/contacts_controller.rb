@@ -12,5 +12,9 @@ class ContactsController < ApplicationController
       flash.now[:error] = 'Cannot send message.'
       render :new
     end
+
+    rescue ScriptError
+      flash[:error] = 'Sorry, this message appears to be spam and was not delivered'
+    end
   end
 end
