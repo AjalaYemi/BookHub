@@ -9,10 +9,16 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find_by_url(params[:id])
-    @users = User.all
-    @comments = @book.comment_threads.order('created_at desc')
-    @new_comment = Comment.build_from(@book, current_user.id, "")
+    unless current_user == nil
+      @book = Book.find_by_url(params[:id])
+      @users = User.all
+      @comments = @book.comment_threads.order('created_at desc')
+      @new_comment = Comment.build_from(@book, current_user.id, "")
+    else
+      @book = Book.find_by_url(params[:id])
+      @users = User.all
+      @comments = @book.comment_threads.order('created_at desc')
+    end
   end
 
   def new

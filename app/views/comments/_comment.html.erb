@@ -1,6 +1,11 @@
-<div class="comment" id="comment-<%=comment.id%>">
+<div class="comment">
 	  <hr />
+	  <% if current_user != nil %>
+	  <% if current_user.name == comment.user.name %>
 	  <%= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close' %>
-	  <small><%= comment.user.name %> at <%= comment.updated_at %></small>
+	  <% end %>
+	  <% else %>
+	  <% end %>
+	  <small><%= comment.user.name %> at <%= comment.updated_at.strftime("%B %d, %Y %H:%M") %> said:</small>
 	  <p><%= comment.body %></p>
 </div>

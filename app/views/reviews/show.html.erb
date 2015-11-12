@@ -20,6 +20,10 @@
 <hr />
 <div class="container">
 <h4>Comments about "<%= @review.title %>"</h4>
+<% unless current_user == nil %>
 <%= render(:partial => "comments/form", :locals => {:comment => @new_comment}) %>
+<% else %>
+<p>Please log in or register to be able to comment </p>
+<% end %>
 <%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
 </div>

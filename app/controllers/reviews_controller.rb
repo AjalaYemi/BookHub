@@ -1,15 +1,20 @@
 class ReviewsController < ApplicationController
 
-  # before_action :authenticate_user!
+  # before_action :authenticate_user! , :only => [:create, :destroy]
 
   def index
     @reviews = Review.sorted.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    @review = Review.find_by_url(params[:id])
-    @comments = @review.comment_threads.order('created_at desc')
-    @new_comment = Comment.build_from(@review, current_user.id, "")
+    unless current_user == nil
+      @review = Review.find_by_url(params[:id])
+      @comments = @review.comment_threads.order('created_at desc')
+      @new_comment = Comment.build_from(@review, current_user.id, "")
+    else
+      @review = Review.find_by_url(params[:id])
+      @comments = @review.comment_threads.order('created_at desc')
+    end
   end
 
   def new

@@ -93,7 +93,7 @@ gem 'magnific-popup-rails'
 gem 'elasticsearch-model' # for elasticsearch
 gem 'elasticsearch-rails' # for elasticsearch
 
-# For pagination on sme models
+# For pagination on some models
 gem 'will_paginate'
 
 # For Mailing

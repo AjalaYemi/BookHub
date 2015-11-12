@@ -6,10 +6,16 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find_by_url(params[:id])
-    @users = User.all
-    @comments = @event.comment_threads.order('created_at desc')
-    @new_comment = Comment.build_from(@event, current_user.id, "")
+    unless current_user == nil
+      @event = Event.find_by_url(params[:id])
+      @users = User.all
+      @comments = @event.comment_threads.order('created_at desc')
+      @new_comment = Comment.build_from(@event, current_user.id, "")
+    else
+      @event = Event.find_by_url(params[:id])
+      @users = User.all
+      @comments = @event.comment_threads.order('created_at desc')
+    end
   end
 
   def new
