@@ -22,6 +22,12 @@
 			<th>Published</th>
 			<td><%= @book.published_year %></td>
 		</tr>
+		<% unless @book.tag_list == nil  %>
+		<tr>
+			<th>Genre</th>
+			<td><%= raw @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
+		</tr>
+		<% end %>
 		<tr>
 			<th>Page Count</th>
 			<td><%= @book.page_count %></td>

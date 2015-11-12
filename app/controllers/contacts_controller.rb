@@ -13,8 +13,8 @@ class ContactsController < ApplicationController
       render :new
     end
 
-    rescue ScriptError
-      flash[:error] = 'Sorry, this message appears to be spam and was not delivered'
-    end
+    # rescue ScriptError
+    #   flash[:error] = 'Sorry, this message appears to be spam and was not delivered'
+    # end
   end
 end

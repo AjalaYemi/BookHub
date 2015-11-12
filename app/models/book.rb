@@ -10,13 +10,15 @@ class Book < ActiveRecord::Base
 
   acts_as_url :name, blacklist: %w{new search contact_us}
 
+  acts_as_taggable
+
 	mount_uploader :front_avatar, AvatarUploader
 	has_many :reviews
 	has_many :comments
 	has_many :book_exchanges
 	has_many :users, :through => :book_exchanges
 	has_and_belongs_to_many :authors
-	has_and_belongs_to_many :genres
+	# has_and_belongs_to_many :genres
 
 	# before_validation :add_default_permalink
 	# after_save :touch_author
@@ -27,9 +29,9 @@ class Book < ActiveRecord::Base
 
 	scope :sorted, lambda { order("books.name ASC")}
 	scope :newest_first, lambda { order("books.created_at DESC")}
-	scope :search, lambda {|query|
-		where(["name LIKE ?", "%#{query}%"])
-	}
+	# scope :search, lambda {|query|
+	# 	where(["name LIKE ?", "%#{query}%"])
+	# }
 
 
 	def self.search(query)

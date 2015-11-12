@@ -6,13 +6,11 @@ class BooksController < ApplicationController
 
   def index
     @authors = Author.sorted
-    if @author
-      @books = Book.where(:author_id => params[:author_id]).sorted
+    if params[:tag]
+      @books = Book.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 10)
     else
       @books = Book.sorted.paginate(page: params[:page], per_page: 10)
-      @authors = Author.sorted
     end
-
   end
 
   def show
@@ -86,6 +84,6 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache, :url)
+    params.require(:book).permit(:name, :publisher,:isbn, :author_id, :bio, :published_year, :word_count, :page_count, :front_avatar, :front_avatar_cache, :url, :tag_list)
   end
 end

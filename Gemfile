@@ -93,6 +93,7 @@ gem 'magnific-popup-rails'
 gem 'elasticsearch-model' # for elasticsearch
 gem 'elasticsearch-rails' # for elasticsearch
 
+# For pagination on sme models
 gem 'will_paginate'
 
 # For Mailing
@@ -104,8 +105,9 @@ gem 'simple_form'
 gem 'mailboxer'
 gem 'public_activity'
 
-# Effizy Al
+# For 'effects'
 gem "gritter"
+gem "font-awesome-rails"
 
 # for human readable url
 gem 'stringex'
@@ -114,3 +116,39 @@ gem 'stringex'
 group :development, :test do
 gem 'foreman'
 end
+
+# For deployement
+gem 'mina'
+
+
+# For social media functionalities
+# gem 'community_engine'
+
+# For commenting
+gem 'acts_as_commentable_with_threading'
+
+# For share buttons
+gem 'shareable'
+
+# For Search (navbar first)
+gem 'ransack'
+
+# For tagging
+gem 'acts-as-taggable-on'
+
+# For follow, like and mention
+gem 'socialization'
+
+########## For Development
+# For ease of use of command prompt
+gem 'awesome_print', require:'ap'
+
+# for quiet asset during viewing
+gem 'quiet_assets', group: :development
+
+# For better error displays
+group :development do
+  gem 'better_errors'
+end
+
+#############################################

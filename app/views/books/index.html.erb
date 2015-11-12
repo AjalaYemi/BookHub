@@ -3,9 +3,10 @@
 	<h2 class="text-center">All Books</h2>	
 	<div class="row">		
 			<div class="col-sm-3"><strong class="centered">Title</strong></div>
-			<div class="col-sm-3"><strong class="centered">Author</strong></div>
+			<div class="col-sm-2"><strong class="centered">Author</strong></div>
 			<div class="col-sm-2"><strong class="centered">Publisher</strong></div>
 			<div class="col-sm-2"><strong class="centered">Published</strong></div>
+			<div class="col-sm-1"><strong class="centered">Genre</strong></div>
 			<div class="col-sm-2 centered">
 				<% if user_signed_in? %>
 					<%= link_to("Add New Book", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
@@ -16,9 +17,14 @@
 		<% @books.each do |book| %>
 		<div class="row <%= cycle('odd', 'even') %>">
 			<div class="col-sm-3"><%= book.name %></div>
-			<div class="col-sm-3"><%= @authors.find_by_id(book.author_id).name %></div>
+			<div class="col-sm-2"><%= @authors.find_by_id(book.author_id).name %></div>
 			<div class="col-sm-2"><%= book.publisher %></div>			
 			<div class="col-sm-2"><%= book.published_year.strftime("%B, %Y") %></div>
+			<div class="col-sm-1">
+				<% unless book.tag_list == nil  %>
+					<%= raw book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+				<% end %>				
+			</div>
 			<div class="col-sm-2">
 				<%= link_to("Show", book_path(book), :class => ' btn btn-primary btn-sm') %>
 				 <% unless current_user.nil? %>				 

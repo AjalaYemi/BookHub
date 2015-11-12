@@ -9,9 +9,9 @@ class Event < ActiveRecord::Base
 
 	scope :sorted, lambda { order("events.name ASC")}
 	scope :newest_first, lambda { order("events.created_at DESC")}
-	scope :search, lambda {|query|
-		where(["name LIKE ?", "%#{query}%"])
-	}
+	# scope :search, lambda {|query|
+	# 	where(["name LIKE ?", "%#{query}%"])
+	# }
 
   def to_param
     url # or whatever you set :url_attribute to

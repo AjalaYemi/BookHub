@@ -13,6 +13,10 @@
 				<td><%= f.text_field(:publisher) %></td>
 			</tr>
 			<tr>
+				<th><%= f.label :tag_list, "Tags (separated by commas)" %></th>
+				<td><%= f.text_field :tag_list %></td>
+			</tr>
+			<tr>
 				<th><%= f.label(:page_count, "Page Count") %></th>
 				<td><%= f.text_field(:page_count) %></td>
 			</tr>

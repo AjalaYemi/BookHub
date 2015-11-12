@@ -14,9 +14,9 @@ class User < ActiveRecord::Base
 
 	scope :sorted, lambda { order("users.last_name ASC, users.first_name ASC")}
 	scope :newest_first, lambda { order("users.created_at DESC")}
-	scope :search, lambda {|query|
-		where(["name LIKE ?", "%#{query}%"])
-	}
+	# scope :search, lambda {|query|
+	# 	where(["name LIKE ?", "%#{query}%"])
+	# }
 
 	# For delayed email sending by Devise using the Delayed Job gem
 	# def send_devise_notification(notification, *args)

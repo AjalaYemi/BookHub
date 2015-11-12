@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'tags/:tag', to: 'books#index', as: :tag
+
   resources :events do
     member do
       get :delete
