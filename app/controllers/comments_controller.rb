@@ -1,67 +1,30 @@
 class CommentsController < ApplicationController
-  def index
-    @comments = Comment.all
-  end
-
-  def show
-    @comment = Comment.find(params[:id])
-    @books = Book.sorted
-    # @users = User.all
-    @events = Event.sorted
-  end
-
-  def new
-    @comment = Comment.new
-    @books = Book.sorted
-    @users = User.all
-  end
 
   def create
-    @books = Book.sorted
-    @events = Event.sorted
-    @users = User.all
-    @comment = Comment.new(comment_params)
-    if @comment.save
-      flash[:notice] = "Comment created successfully"
-      redirect_to(:action => 'index')
-    else
-      flash[:notice] = "Comment didnt save because of some errors"
-      render('new')
-    end
+      @comment_hash = params[:comment]
+      @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
+      # Not implemented: check to see whether the user has permission to create a comment on this object
+      @comment = Comment.build_from(@obj, current_user.id, @comment_hash[:body])
+      if @comment.save
+        render :partial => "comments/comment", :locals => { :comment => @comment }, :layout => false, :status => :created
+      else
+        render :js => "alert('error saving comment');"
+      end
   end
-
-  def edit
-    @comment = Comment.find(params[:id])
-    @books = Book.sorted
-    @events = Event.sorted
-    @users = User.all
-  end
-
-  def update
-    @books = Book.sorted
-    @users = User.all
-    @comment = Comment.find(params[:id])
-    if @comment.update_attributes(comment_params)
-      flash[:notice] = "Comment updated successfully"
-      redirect_to(:action => 'show', :id => @comment.id)
-    else
-      flash[:notice] = "Comment didnt update because of some errors"
-      render('new')
-    end
-  end
-
-  def delete
-    @comment = Comment.find(params[:id])
-  end
-
   def destroy
-    comment = Comment.find(params[:id]).destroy
-    flash[:notice] = "The comment has been successfully deleted"
-    redirect_to(:action => 'index')
+    @comment = Comment.find(params[:id])
+    if @comment.destroy
+      render :json => @comment, :status => :ok
+    else
+      render :js => "alert('error deleting comment');"
+    end
   end
+
 
   private
+
   def comment_params
-    params.require(:comment).permit(:comment, :user_id, :book_id, :review_id, :event_id)
+    params.require(:comment,:commentable_id,:commentable_type, :user_id, :body)
   end
+
 end

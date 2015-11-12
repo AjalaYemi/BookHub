@@ -8,7 +8,7 @@
 			<div class="col-sm-2"><strong class="centered">Title</strong></div>
 			<div class="col-sm-2"><strong class="centered">Review</strong></div>
 			<div class="col-sm-2"><strong class="centered">Book</strong></div>
-			<div class="col-sm-2"><strong class="centered">Book Author</strong></div>			
+			<div class="col-sm-2"><strong class="centered">Book Author(s)</strong></div>			
 			<div class="col-sm-2">
 				<% if user_signed_in? %>
 					<%= link_to(image_tag('plus_sign.png', :size => '11x11', :alt => '+') + " Add New Review", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
@@ -22,7 +22,7 @@
 			<div class="col-sm-2"><%= review.title %></div>
 			<div class="col-sm-2"><%= review.review %></div>
 			<div class="col-sm-2"><%= review.book.name %></div>
-			<div class="col-sm-2"><%= @authors.find_by_id(review.book.author_id).name %></div>
+			<div class="col-sm-2"><%= raw review.book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %></div>
 			<div class="col-sm-2">
 				<%= link_to("Show", review_path(review), :class => 'btn btn-primary btn-sm') %>
 				<% unless current_user.nil? %>

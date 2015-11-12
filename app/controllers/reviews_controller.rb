@@ -4,13 +4,12 @@ class ReviewsController < ApplicationController
 
   def index
     @reviews = Review.sorted.paginate(page: params[:page], per_page: 10)
-    # @users = User.all
-    # @books = Book.all
-    @authors = Author.sorted
   end
 
   def show
     @review = Review.find_by_url(params[:id])
+    @comments = @review.comment_threads.order('created_at desc')
+    @new_comment = Comment.build_from(@review, current_user.id, "")
   end
 
   def new

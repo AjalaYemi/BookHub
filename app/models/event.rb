@@ -6,6 +6,8 @@ class Event < ActiveRecord::Base
 
   acts_as_url :name, blacklist: %w{new search contact_us}
 
+  acts_as_commentable
+
 
 	scope :sorted, lambda { order("events.name ASC")}
 	scope :newest_first, lambda { order("events.created_at DESC")}

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :books do
     member do
+      resources :comments, :only => [:create, :destroy]
       get :delete
     end
   end
@@ -21,18 +22,14 @@ Rails.application.routes.draw do
 
   resources :events do
     member do
-      get :delete
-    end
-  end
-
-  resources :authors do
-    member do
+      resources :comments, :only => [:create, :destroy]
       get :delete
     end
   end
 
   resources :reviews do
     member do
+      resources :comments, :only => [:create, :destroy]
       get :delete
     end
   end

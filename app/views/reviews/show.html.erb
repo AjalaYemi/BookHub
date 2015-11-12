@@ -14,3 +14,12 @@
 		</tr>
 	</table>
 </div>
+
+<%= render_shareable %>
+
+<hr />
+<div class="container">
+<h4>Comments about "<%= @review.title %>"</h4>
+<%= render(:partial => "comments/form", :locals => {:comment => @new_comment}) %>
+<%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
+</div>

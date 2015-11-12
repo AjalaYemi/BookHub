@@ -10,6 +10,8 @@ class Book < ActiveRecord::Base
 
   acts_as_url :name, blacklist: %w{new search contact_us}
 
+  acts_as_commentable
+
   acts_as_taggable
   acts_as_taggable_on :author, :genre
 

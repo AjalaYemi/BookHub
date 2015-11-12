@@ -139,7 +139,7 @@ gem 'acts-as-taggable-on'
 # For follow, like and mention
 gem 'socialization'
 
-########## For Development
+########## For Development ##################
 # For ease of use of command prompt
 gem 'awesome_print', require:'ap'
 

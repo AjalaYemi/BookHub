@@ -11,6 +11,8 @@ class BooksController < ApplicationController
   def show
     @book = Book.find_by_url(params[:id])
     @users = User.all
+    @comments = @book.comment_threads.order('created_at desc')
+    @new_comment = Comment.build_from(@book, current_user.id, "")
   end
 
   def new

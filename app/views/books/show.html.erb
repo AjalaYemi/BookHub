@@ -66,25 +66,25 @@
 	</div> <!-- end column -->
 </div> <!-- end row -->
 </div>
-
+<br />
+<br />
+<br />
+<%= render_shareable %>
 <hr />
 <h4>Reviews about "<%= @book.name %>"</h4>
 <% if @book.reviews.empty? %>
 		<td> There are no Reviews on this book. Why not write yours? </td>
 <% else %>
 	<td><% @book.reviews.each do |review| %>
-	<%= review.review %>, by <%= find_user(review.user_id) %>
+	<%= link_to("#{review.review}, by find_user(review.user_id)", review_path(review)) %>
 	<% end %></td>
 <% end %>
 <!-- To replace this with a javascript(?) dropdown to allow the user add review from the book page -->
 <%= link_to("Add Review", {:controller => 'reviews', :action => 'new'}) %>
 <hr />
 
+<div class="container">
 <h4>Comments about "<%= @book.name %>"</h4>
-<% if @book.comments.empty? %>
-		<td> There are no comments on this book. Why not write yours? </td>
-<% else %>
-	<td><% @book.comments.each do |comment| %>
-	<%= comment.comment %>, by <%= find_user(comment.user_id) %>
-	<% end %></td>
-<% end %>
+<%= render(:partial => "comments/form", :locals => {:comment => @new_comment}) %>
+<%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
+</div>
