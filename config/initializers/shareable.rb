@@ -68,13 +68,13 @@ Shareable.configure do |config|
   ###############
   ##twitter
   ###############
-  config.via='@BookHubNg' # screen name of the user to attribute the tweet to.
+  config.via='BookHubNg' # screen name of the user to attribute the tweet to.
   #config.text='' # default tweet text. If blank, defaults to value of config.title.
   #config.related='' # related accounts
   #config.count='horizontal' # 'none', 'horizontal' or 'vertical'. '' defaults to 'horizontal'.
   #config.lang='en'
   #config.counturl='' # url to which your shared url resolves
-  config.hashtags='#BookHub' # comma separated hashtags appended to tweet text
+  config.hashtags='BookHub' # comma separated hashtags appended to tweet text
   #config.dnt='' # 'true' or 'false'. 'true' tailors content and suggestions for twitter users.
 
   ###############
@@ -91,7 +91,7 @@ Shareable.configure do |config|
   ##shared configuration options
   ###############
   #config.width='80' # used by facebook, google_plus and tumblr.
-  config.title= 'Shared From BookHub.ng' # used by linkedin, pinterest, reddit, stumbleupon and tumblr.
+  #config.title= 'Shared From BookHub.ng' # used by linkedin, pinterest, reddit, stumbleupon and tumblr.
   #config.description='' # used by linkedin and tumblr.
   #config.size='medium' # used by twitter and google_plus.
   ## google_plus config.size can be 'small', 'medium', 'standard' and 'tall'. Default is 'standard'. Shareable uses 'medium'.

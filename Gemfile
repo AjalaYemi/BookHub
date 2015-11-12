@@ -17,8 +17,8 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'bootstrap-sass'
 #  add browser vendor prefixes automatically
 gem 'autoprefixer-rails'
-# # For responsive website
-# gem 'susy'
+# For responsive website
+gem 'susy'
 
 
 # Use Uglifier as compressor for JavaScript assets
@@ -66,32 +66,32 @@ gem "mini_magick"
 
 # For Using social media authentication
 gem 'devise'
-# gem 'omniauth'
-# gem 'omniauth-twitter'
-# gem 'omniauth-facebook'
-# gem 'omniauth-linkedin'
-# gem 'omniauth-google-oauth2'
-# gem 'omniauth-linkedin-oauth2'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-linkedin-oauth2'
 
 # (1) Add the functionalities of these later
 # For mail to be sent in the background for Devise
-# gem 'delayed_job_active_record'
+gem 'delayed_job_active_record'
 
-# #Devise password lenght/ weak password rejection
-# gem 'devise_zxcvbn'
+#Devise password lenght/ weak password rejection
+gem 'devise_zxcvbn'
 
-# gem 'any_login'
-# gem 'devise_invitable'
+gem 'any_login'
+gem 'devise_invitable'
 
-# gem "devise-async"
-# gem 'devise_campaignable'
+gem "devise-async"
+gem 'devise_campaignable'
 
  # (2) Add the functionalities of these later
 # gem 'tabulous'
 # gem 'formtastic-bootstrap'
 gem 'magnific-popup-rails'
-# gem 'elasticsearch-model' # for elasticsearch
-# gem 'elasticsearch-rails' # for elasticsearch
+gem 'elasticsearch-model' # for elasticsearch
+gem 'elasticsearch-rails' # for elasticsearch
 
 # For pagination on some models
 gem 'will_paginate'
