@@ -5,16 +5,16 @@
 				<td><%= f.text_field(:name) %></td>
 			</tr>
 			<tr>
-				<th><%= f.label(:author_id, "Author") %></th>
-				<td><%= f.select(:author_id, @authors.map {|a| [a.name, a.id]}) %></td>
+				<th><%= f.label :author_list, "Author(s) (separated by commas)" %></th>
+				<td><%= f.text_field :author_list %></td>
 			</tr>
 			<tr>
 				<th><%= f.label(:publisher) %></th>
 				<td><%= f.text_field(:publisher) %></td>
 			</tr>
 			<tr>
-				<th><%= f.label :tag_list, "Tags (separated by commas)" %></th>
-				<td><%= f.text_field :tag_list %></td>
+				<th><%= f.label :genre_list, "Genre (separated by commas)" %></th>
+				<td><%= f.text_field :genre_list %></td>
 			</tr>
 			<tr>
 				<th><%= f.label(:page_count, "Page Count") %></th>
@@ -34,12 +34,15 @@
 			</tr>	
 			<tr>
 				<th><%= f.label(:front_avatar, "Book Cover") %></th>
-				<td><%= image_tag(@book.front_avatar_url(:thumb)) if @book.front_avatar? %>
+				<td><%= image_tag(@book.front_avatar_url(:normal)) if @book.front_avatar? %>
 					<%= f.file_field(:front_avatar) %></td>
 				 <%= f.hidden_field(:front_avatar_cache) %>
 			</tr>
 			<tr>
 				<th><%= f.label(:published_year, "Date Published") %></th>
 				<td><%= f.date_select(:published_year, :end_year => Time.now.year, :discard_day => true, :order => [:month, :year], :start_year => Time.now.year-100) %></td>
-			</tr>			
+			</tr>
+			<br />	
+			<br />		
 		</table>
+		

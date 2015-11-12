@@ -11,6 +11,7 @@ class Book < ActiveRecord::Base
   acts_as_url :name, blacklist: %w{new search contact_us}
 
   acts_as_taggable
+  acts_as_taggable_on :author, :genre
 
 	mount_uploader :front_avatar, AvatarUploader
 	has_many :reviews

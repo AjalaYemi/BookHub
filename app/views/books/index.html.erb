@@ -17,12 +17,16 @@
 		<% @books.each do |book| %>
 		<div class="row <%= cycle('odd', 'even') %>">
 			<div class="col-sm-3"><%= book.name %></div>
-			<div class="col-sm-2"><%= @authors.find_by_id(book.author_id).name %></div>
+			<div class="col-sm-2">
+				<% unless book.author_list == nil  %>
+					<%= raw book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+				<% end %>
+			</div>
 			<div class="col-sm-2"><%= book.publisher %></div>			
 			<div class="col-sm-2"><%= book.published_year.strftime("%B, %Y") %></div>
 			<div class="col-sm-1">
-				<% unless book.tag_list == nil  %>
-					<%= raw book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+				<% unless book.genre_list == nil  %>
+					<%= raw book.genre_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
 				<% end %>				
 			</div>
 			<div class="col-sm-2">
@@ -38,6 +42,5 @@
 		<% end %>
 		<br />
 	<%= will_paginate @books %>
-	<br />
-	<%= link_to("Authors", authors_path, :class => 'btn btn-primary btn-sm') %>
+	<br />	
 </div> <!-- end container -->

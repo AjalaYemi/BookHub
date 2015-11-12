@@ -6,10 +6,12 @@
 	<div class="col-md-8">
 	<div class="table-responsive">
 	<table summary="Book detail view" class="table table-striped table-hover table-condensed">
+		<% unless @book.author_list == nil  %>
 		<tr>
-			<th>Author</th>
-			<td><%= @authors.find_by_id(@book.author_id).name %></td>
+			<th>Genre</th>
+			<td><%= raw @book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
 		</tr>
+		<% end %>
 		<tr>
 			<th>Publisher</th>
 			<td><%= @book.publisher %></td>
@@ -22,10 +24,10 @@
 			<th>Published</th>
 			<td><%= @book.published_year %></td>
 		</tr>
-		<% unless @book.tag_list == nil  %>
+		<% unless @book.genre_list == nil  %>
 		<tr>
 			<th>Genre</th>
-			<td><%= raw @book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
+			<td><%= raw @book.genre_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
 		</tr>
 		<% end %>
 		<tr>

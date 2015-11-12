@@ -11,30 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112105852) do
-
-  create_table "authors", force: true do |t|
-    t.string   "first_name", limit: 25,              null: false
-    t.string   "last_name",  limit: 25, default: ""
-    t.text     "bio"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "avatar"
-  end
-
-  create_table "authors_books", id: false, force: true do |t|
-    t.integer "author_id"
-    t.integer "book_id"
-  end
-
-  add_index "authors_books", ["author_id", "book_id"], name: "index_authors_books_on_author_id_and_book_id"
-
-  create_table "authors_events", id: false, force: true do |t|
-    t.integer "author_id"
-    t.integer "event_id"
-  end
-
-  add_index "authors_events", ["author_id", "event_id"], name: "index_authors_events_on_author_id_and_event_id"
+ActiveRecord::Schema.define(version: 20151112115904) do
 
   create_table "book_exchanges", force: true do |t|
     t.integer  "user_id"
