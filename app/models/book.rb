@@ -1,12 +1,12 @@
 
-	require 'elasticsearch/model'
+	# require 'elasticsearch/model'
 
 class Book < ActiveRecord::Base
 
 
 
-	include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+	# include Elasticsearch::Model
+ #  include Elasticsearch::Model::Callbacks
 
   acts_as_url :name, blacklist: %w{new search contact_us}
 
@@ -36,35 +36,35 @@ class Book < ActiveRecord::Base
 	# 	where(["name LIKE ?", "%#{query}%"])
 	# }
 
+ ############ For Elastic search ######
+	# def self.search(query)
+ # 	 __elasticsearch__.search(
+ #   	 {
+ #    	  query: {
+ #     	   multi_match: {
+ #      	    query: query,
+ #      	    fields: ['name^10', 'bio']
+ #      	  }
+ #     	 },
+ #     	 highlight: {
+ #        pre_tags: ['<em>'],
+ #        post_tags: ['</em>'],
+ #        fields: {
+ #          name: {},
+ #          bio: {}
+ #        }
+ #      }
+ #    	}
+ #  	)
+	# end
 
-	def self.search(query)
- 	 __elasticsearch__.search(
-   	 {
-    	  query: {
-     	   multi_match: {
-      	    query: query,
-      	    fields: ['name^10', 'bio']
-      	  }
-     	 },
-     	 highlight: {
-        pre_tags: ['<em>'],
-        post_tags: ['</em>'],
-        fields: {
-          name: {},
-          bio: {}
-        }
-      }
-    	}
-  	)
-	end
-
-	settings index: { number_of_shards: 1 } do
-  	mappings dynamic: 'false' do
-    	indexes :name, analyzer: 'english', index_options: 'offsets'
-    	indexes :bio, analyzer: 'english'
-  	end
-	end
-
+	# settings index: { number_of_shards: 1 } do
+ #  	mappings dynamic: 'false' do
+ #    	indexes :name, analyzer: 'english', index_options: 'offsets'
+ #    	indexes :bio, analyzer: 'english'
+ #  	end
+	# end
+ ####### End ############33
   def to_param
     url # or whatever you set :url_attribute to
   end
@@ -78,13 +78,15 @@ class Book < ActiveRecord::Base
 	# end
 end
 
-# Delete the previous articles index in Elasticsearch
-Book.__elasticsearch__.client.indices.delete index: Book.index_name rescue nil
 
-# Create the new index with the new mapping
-Book.__elasticsearch__.client.indices.create \
-  index: Book.index_name,
-  body: { settings: Book.settings.to_hash, mappings: Book.mappings.to_hash }
+# For Elastic search
+# # Delete the previous articles index in Elasticsearch
+# Book.__elasticsearch__.client.indices.delete index: Book.index_name rescue nil
 
-# Index all article records from the DB to Elasticsearch
-Book.import
+# # Create the new index with the new mapping
+# Book.__elasticsearch__.client.indices.create \
+#   index: Book.index_name,
+#   body: { settings: Book.settings.to_hash, mappings: Book.mappings.to_hash }
+
+# # Index all article records from the DB to Elasticsearch
+# Book.import
