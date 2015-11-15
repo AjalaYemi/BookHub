@@ -41,9 +41,7 @@
 		<% unless @event.avatar_url == nil  %>			
 		<div class="row">		
 			<div class="col-sm-4 centered"><!-- <strong>Flyer</strong> --></div>
-			<div class="col-sm-8"> <%= link_to image_url(@event.avatar_url(:normal)) do %>
-				<%= image_tag @event.avatar_url(:thumb) %>
-				<% end %>
+			<div class="col-sm-8">
 			</div>
 		</div>
 		<% end %>
@@ -58,7 +56,6 @@
 	<%= render_shareable %>
 </div>
 
-
 <hr />
 
 <div class="container">
@@ -70,3 +67,5 @@
 <% end %>
 <%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
 </div>
+
+

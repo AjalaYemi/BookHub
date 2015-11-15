@@ -32,6 +32,7 @@ class Book < ActiveRecord::Base
 
 	scope :sorted, lambda { order("books.name ASC")}
 	scope :newest_first, lambda { order("books.created_at DESC")}
+	scope :four_only, lambda { limit(4)}
 	# scope :search, lambda {|query|
 	# 	where(["name LIKE ?", "%#{query}%"])
 	# }

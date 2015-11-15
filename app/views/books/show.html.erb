@@ -1,89 +1,89 @@
 <% @page_title = @book.name %>
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
-<div class="book show">
-	<h2><%= @book.name %></h2>
-<div class="row">
-	<div class="col-md-8">
-	<div class="table-responsive">
-	<table summary="Book detail view" class="table table-striped table-hover table-condensed">
-		<% unless @book.author_list == nil  %>
-		<tr>
-			<th>Genre</th>
-			<td><%= raw @book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
-		</tr>
-		<% end %>
-		<tr>
-			<th>Publisher</th>
-			<td><%= @book.publisher %></td>
-		</tr>
-		<tr>
-			<th>ISBN</th>
-			<td><%= @book.isbn %></td>
-		</tr>
-		<tr>
-			<th>Published</th>
-			<td><%= @book.published_year %></td>
-		</tr>
-		<% unless @book.genre_list == nil  %>
-		<tr>
-			<th>Genre</th>
-			<td><%= raw @book.genre_list.map { |t| link_to t, tag_path(t) }.join(', ') %></td>			
-		</tr>
-		<% end %>
-		<tr>
-			<th>Page Count</th>
-			<td><%= @book.page_count %></td>
-		</tr>
-		<tr>
-			<th>Word Count</th>
-			<td><%= @book.word_count %></td>
-		</tr>
-		<tr>
-			<th>Summary</th>
-			<td><%= @book.bio %></td>
-		</tr>
-		<% unless @book.front_avatar_url == nil %>
-		<tr>
-			<th>Front Cover</th>
-			<td><%= image_tag @book.front_avatar_url(:thumb) %></td>
-		</tr>
-		<% end %>
-		<% unless @book.created_by == 0 %>
-			<tr>
-				<th>Created by</th>
-				<td><%= @users.find(@book.created_by).name %></td>
-			</tr>
-		<% end %>
-		<% unless @book.updated_by == 0 %>
-			<tr>
-				<th>Updated by</th>
-				<td><%= @users.find(@book.updated_by).name %></td>
-			</tr>	
-		<% end %>
-			
-	</table>
-	</div> <!-- end table responsive -->
-	</div> <!-- end column -->
-</div> <!-- end row -->
-</div>
-<br />
-<br />
-<br />
-<%= render_shareable %>
-<hr />
-<h4>Reviews about "<%= @book.name %>"</h4>
-<% if @book.reviews.empty? %>
-		<td> There are no Reviews on this book. Why not write yours? </td>
-<% else %>
-	<td><% @book.reviews.each do |review| %>
-	<%= link_to("#{review.review}, by find_user(review.user_id)", review_path(review)) %>
-	<% end %></td>
-<% end %>
-<!-- To replace this with a javascript(?) dropdown to allow the user add review from the book page -->
-<%= link_to("Add Review", {:controller => 'reviews', :action => 'new'}) %>
+<section class="brownBox" id="longRollers">
+            <div class="container">
+                <h4 class="green thin pull-left noTop">&larr;<%= link_to " back to Books", books_path, :class => 'greenLink' %></h4>
+                <div class="borderThick clearer"></div>
+                <br>
+                <div class="inline frontCover"><% unless @book.front_avatar_url == nil %>                 
+				<%= image_tag @book.front_avatar_url(:thumb) %>
+				<% end %>
+                    <div class="topPad">
+                        
+                    </div>
+                </div>
+                <div id="controllable" class="inline">
+                    <div class="tabHolder">
+                        <a href="#!" class="greenButton roundButton inline toggler" bh-target="#detailsBox"><span class="glyphicon glyphicon-book"></span> &nbsp; Details </a>
+                        <a href="#!" class="greenButton roundButton inline toggler" bh-target="#reviewBox"><span class="glyphicon glyphicon-pencil"></span> &nbsp; Reviews </a>
+                         <!-- <a href="#!" class="greenButton roundButton inline toggler" bh-target="#commentBox"><span class="glyphicon glyphicon-comment"></span> &nbsp; Comments </a> -->
+                    </div>
+                    
+                
+                <div class="bookInfo dashContent" id="detailsBox">
+                    <h4 class="thin green">Book Details</h4>
+                    <div class="brownSpace">
+                        <span class="pull-left">Title:</span> <span class="pull-right"><%= @book.name %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Genre:</span> <span class="pull-right"><% unless @book.genre_list == nil  %><%= raw @book.genre_list.map { |t| link_to t, tag_path(t) }.join(', ') %><% end %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Author:</span> <span class="pull-right"><% unless @book.author_list == nil  %><%= raw @book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %><% end %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Publisher:</span> <span class="pull-right"><%= @book.publisher %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">ISBN:</span> <span class="pull-right"><%= @book.published_year %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Published:</span> <span class="pull-right"><%= @book.published_year %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Page count:</span> <span class="pull-right"><%= @book.page_count %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Word count:</span> <span class="pull-right"><%= @book.word_count %></span><br><div class="clearer"></div>
+                    </div>
+                    <% unless @book.created_by == 0 %>
+                    <div class="brownSpace">
+                        <span class="pull-left">Created by:</span> <span class="pull-right"><%= @users.find(@book.created_by).name %></span><br><div class="clearer"></div>
+                    </div>
+                    <% end %>
+                    <% unless @book.updated_by == 0 %>
+                    <div class="brownSpace">
+                        <span class="pull-left">Updated by:</span> <span class="pull-right"<%= @users.find(@book.updated_by).name %>><%= @users.find(@book.updated_by).name %></span><br><div class="clearer"></div>
+                    </div>
+                    <% end %>
+                    <div class="brownSpace">
+                        <span class="">Summary:</span><br><br> <p class=""><%= @book.bio %></p>
+                    </div>
+                </div>
+                
+                <div class="bookInfo dashContent" id="reviewBox">
+                    <h4 class="thin green pull-left">Reviews</h4>
+                    <button class="btn btn-default pull-right small" onclick="showReviewModal(this)" bh-title="<%= @book.name %>"><span class="glyphicon glyphicon-plus"></span> Add review</button>
+                    <% if @book.reviews.empty? %>
+                    <div class="reviewPreview">                    	
+							<p> There are no Reviews on this book. Why not write yours? </p>
+						<% else %>
+							<% @book.reviews.each do |review| %>                        
+                        		<%= @users.find(review.user_id).name %> reviewed this book <%= review.created_at.strftime("%B %d, %Y %H:%M") %>
+                        		<div class="reviewText">
+								    <%= truncate("#{review.review}", length: 200) %>					
+                                    <i><%= link_to "Read full review", review_path(review), :class => 'greenLink' %></i>
+                                    <% end %>
+                                </div>
+                    </div>
+                    <% end %>                    
+                </div>
+        </section>
+        <br />
+        <br />
+        <%= render_shareable %>
 <hr />
 
-<div class="container">
+  <div class="container">
 <h4>Comments about "<%= @book.name %>"</h4>
 <% unless current_user == nil %>
 <%= render(:partial => "comments/form", :locals => {:comment => @new_comment}) %>
@@ -92,3 +92,20 @@
 <% end %>
 <%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
 </div>
+
+<br />
+<br />
+<br />
+<!--        Review modal. This modal is custom written by me, and cannot be manipulated by anything bootstrap modal-->
+        <section id="reviewMaster">
+            <div class="container">
+                <button class="btn pull-right btn-default" onclick="hideReviewModal()">Close</button>   
+                <h2 class="thin">New review for: <span class="green" id="reviewTitle"></span></h2>
+                <form>
+                    <textarea placeholder="Start writing" id="reviewInput"></textarea>
+                    <br><br>
+                    <input type="submit" class="roundButton greenButton" value="Upload review">
+                </form>
+            </div>
+        </section>
+        

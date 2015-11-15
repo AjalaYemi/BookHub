@@ -22,5 +22,8 @@ module BookHub
     #
     # For Delayed mailing for Devise using Delayed Job gem
     #  config.active_job.queue_adapter = :delayed_job
+
+    # FOr font assets pre-compile
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end

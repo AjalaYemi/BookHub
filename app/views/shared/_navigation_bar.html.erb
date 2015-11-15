@@ -1,51 +1,43 @@
-<nav class="navbar navbar-inverse" role="navigation">
-  			<div class="container">
-    			<div class="navbar-header">
-            <button class="btn btn-success navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <!-- <span class="glyphicon glyphicon-chevron-down"></span> --><span class="caret"></span>
-            </button>
-           <% if user_signed_in? %>
-            <%= link_to(image_tag('logo.jpg', :size => '110x30', :alt => 'Home'), authenticated_root_path, class: 'navbar-brand') %>              
-           <% else %> 
-              <%= link_to 'BookHub', root_path, class: 'navbar-brand' %>
-           <% end %>
-    			</div> <!-- end navbar header -->
-    			<div id="navbar" class="navbar-collapse collapse">
-     			  <ul class="nav navbar-nav">
-              <li class="nav"><%= nav_link 'Books', books_path %></li> 
-              <li class="nav"><%= nav_link 'Events', events_path %></li>
-              <!-- <li class="nav"><%= nav_link 'Book Swap', {:controller => '/book_exchanges', :action => 'swap'} %></li> -->
-              <li class="nav"><%= nav_link 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'} %></li>
-              <li class="nav"><%= link_to("Contact Us", '/contact_us') %></li>
-            </ul>
-            <!-- Nav bar search form -->
-            <%= form_tag search_path, :class => 'navbar-form navbar-left', method: :get do %>
-              <div class="form-group">
-                <%= text_field_tag :q, nil, :placeholder => 'Search' %>
-              </div>
-              <%= submit_tag "Submit", :class => 'btn btn-default btn-xs', name: nil %>
-            <% end %> <!-- end navbar search form -->
-      			<ul class="nav navbar-nav pull-right">
-        			<% if user_signed_in? %>
-          				<li class="dropdown">
-           				 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                      <!-- <span class="glyphicon glyphicon-user"></span> -->
-              				<%= current_user.first_name %>
-              				<span class="caret"></span>
-            				</a>
-            				<ul class="dropdown-menu" role="menu">
-                        <!-- <li><a href="#">Hello <%= current_user.first_name %></a></li>  -->
-                        <li><%= link_to 'Profile', {:controller =>'/users', :action => 'show'} %></li>
-                        <li role="separator" class="divider"></li>
-              					<li><%= link_to 'Edit Account Information', edit_user_registration_path %></li>
-              					<li><%= link_to 'Log out', destroy_user_session_path, :method => :delete %></li>
-            				</ul>
-          				</li>
-        			<% else %>
-          				<li><%= link_to 'Log In', new_user_session_path %></li>
-          				<li><%= link_to 'Sign Up', new_user_registration_path %></li>
-        			<% end %>
-      			</ul>
-    			</div><!-- end navbar collapse -->
-  			</div><!-- end container -->
-		</nav>
+            <div id="searchBox">
+                <div class="container">
+                        <%= form_tag search_path, :class => 'navbar-form navbar-left', method: :get do %>
+                          <div class="form-group">
+                            <span class="glyphicon glyphicon-search"></span> &nbsp;<%= text_field_tag :q, nil, :placeholder => "Type a book or author & hit 'Enter' to search", :id => 'searchPut' %><button class="btn btn-default small" onclick="hideSearchBox()">close search panel</button>
+                          </div>
+                            <%= submit_tag "Submit", :class => 'btn btn-default btn-xs', name: nil %>
+                        <% end %>                    
+                </div>
+            </div>
+        <header>
+            
+            <div class="container">
+                <%= link_to (image_tag('logo2.jpg', :id => 'topLogo', :size => '200x40')), root_path, class: 'pull-left' %>
+                <!-- <a href="index.html" id="topLogo" class="pull-left"><img src="img/logo2.jpg"></a> -->
+                <div class="pull-right topPad">
+                    <a href="#" class="greenLink smallHide" onclick="toggleSearchBox()">Search</a>
+                    <%= link_to 'Books', books_path, :class => 'greenLink  smallHide' %>                  
+                    <%= link_to 'Events', events_path, :class => 'greenLink  smallHide' %>
+                    <%= link_to 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'}, :class => 'greenLink  smallHide' %>
+                    <%= link_to 'Contact Us', '/contact_us', :class => 'greenLink smallHide' %>
+                    <% if user_signed_in? %>           
+                                <%= link_to 'Edit Account Information', edit_user_registration_path, :class => 'greenLink  smallHide' %>
+                                <%= link_to 'Log out', destroy_user_session_path, :method => :delete, :class => 'greenButton roundButton  smallHide' %>                           
+                    <% else %>
+                        <span data-toggle="modal" data-target="#logInModal"><%= link_to 'Log In', new_user_session_path, :class => 'greenLink  smallHide' %></span>
+                    <span data-toggle="modal" data-target="#signUpModal"><%= link_to 'Sign Up', new_user_registration_path, :class => 'greenButton roundButton  smallHide' %></span>
+                    <% end %>                    
+                    <a href="#" class="greenButton roundButton smallShow" id="smallMenuToggler">Menu</a>
+                </div>
+            </div>
+        </header>
+        <div class="smallMenu" id="smallMenu">
+            <div class="container">
+                <a href="#" class="greenLink" onclick="toggleSearchBox()">Search</a>
+                 <%= link_to 'Books', books_path, :class => 'greenLink' %>                  
+                    <%= link_to 'Events', events_path, :class => 'greenLink' %>
+                    <%= link_to 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'}, :class => 'greenLink' %>
+                    <%= link_to 'Contact Us', '/contact_us', :class => 'greenLink  smallHide' %>
+                    <span data-toggle="modal" data-target="#logInModal"><%= link_to 'Log In', new_user_session_path, :class => 'greenLink' %></span>
+                    <span data-toggle="modal" data-target="#signUpModal"><%= link_to 'Sign Up', new_user_registration_path, :class => 'greenButton roundButton' %></span>                
+            </div>
+        </div>

@@ -2,11 +2,49 @@
 <% content_for :top_content do %>
   <div class="jumbotron">
     <div class="container">
-      <h1>Welcome!</h1>
-      <p>Register to get started.</p>
-      <p>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-      </p>
+      <section id="landingSplash">
+            <div class="greenBack">
+                <div class="container">
+                    <div class="splashTalk">
+                        <h1 class="thin">Welcome to BookHub</h1>
+                        <div class="splashNormal">
+                            View, review and donate books
+                            <br><br><br>
+                            <% unless user_signed_in? %>
+                                <span data-toggle="modal" data-target="#signUpModal"><%= link_to "Create an account", new_user_registration_path, :class => 'whiteButton roundButton'%></span>
+                            <% end %>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="brownBox">
+            <div class="container">
+                <h2 class="green thin pull-left noTop"><%= link_to "Books", books_path, :class => 'greenLink' %></h2>
+                <div class="borderThick clearer"></div>
+                <div class="full bookRoll">
+                	<% @books.each do |book| %>
+                    <div class="bookPreview inline">
+                        <%= link_to (image_tag book.front_avatar_url, :class => 'full'), book_path(book) %>
+                    </div>
+                    <% end %>                    
+                </div>
+            </div>
+            
+            <div class="container" id="eventsHolder">
+                <h2 class="green thin pull-left noTop"><%= link_to "Events", events_path, :class => 'greenLink' %></h2>
+                <div class="borderThick clearer"></div>
+                <div class="full eventRoll">
+                    <% @events.each do |event| %>
+                    <div class="bookPreview inline">
+                        <%= link_to (image_tag event.avatar_url, :class => 'full'), event_path(event) %>
+                    </div>
+                    <% end %> 
+                </div>
+            </div>
+            
+        </section>
     </div>
   </div>
 <% end %>

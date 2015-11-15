@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
 
 	scope :sorted, lambda { order("events.name ASC")}
 	scope :newest_first, lambda { order("events.created_at DESC")}
+  scope :four_only, lambda { limit(4)}
 	# scope :search, lambda {|query|
 	# 	where(["name LIKE ?", "%#{query}%"])
 	# }

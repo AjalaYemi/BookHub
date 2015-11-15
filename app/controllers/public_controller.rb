@@ -3,9 +3,14 @@ class PublicController < ApplicationController
   before_action :authenticate_user!, only: [:make_me_admin]
 
 	def index
+    @books = Book.newest_first.four_only
+    @events = Event.newest_first.four_only
+    @users = User.all
   end
 
   def show
+    @books = Book.newest_first.four_only
+    @events = Event.newest_first.four_only
   end
 
   def make_me_admin

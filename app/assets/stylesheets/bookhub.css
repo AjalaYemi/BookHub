@@ -1,0 +1,367 @@
+.container {
+    width: 80%;
+    margin: auto;
+}
+header {
+    padding-top: 10px;
+    font-size: 12px !important;
+    padding-bottom: 5px;
+}
+#topLogo img {
+    height: 45px;
+    vertical-align: middle;
+    margin-top: -5px;
+}
+a, button, input {
+    outline: none !important;
+}
+body {
+    font-family: 'open sans', sans-serif;
+}
+#signUpModal .modal-dialog, #logInModal .modal-dialog {
+    margin-top: 100px;
+}
+#signUpModal .modal-content, #logInModal .modal-content, #commentModal .modal-content {
+    border-radius: 2px;
+}
+textarea {
+    resize: none;
+}
+#commentModal textarea {
+    height: 200px;
+}
+.block {
+    display: block
+}
+footer {
+    background: #000000;
+    min-height: 100px;
+}
+#eventsHolder {
+    padding-top: 50px;
+}
+.bookRoll .bookPreview {
+    margin-left: 15px;
+    margin-bottom: 10px;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+     -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s;
+}
+.bookRoll .bookPreview:nth-child(4n+1) {
+    margin-left: 0;
+}
+.bookRoll img {
+    box-shadow: ;
+}
+.bookRoll .bookPreview:hover {
+/*    margin-top: -10px;*/
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.50);
+}
+.topPad .block {
+    margin-bottom: 10px;
+}
+.greenButton {
+    color: #ffffff;
+    background: #569F89;
+    border: solid 1px #569f89;
+    -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s;
+}
+.modal-title {
+    color: #569f89;
+}
+.inline {
+    display: inline-block;
+    vertical-align: top;
+}
+.bookPreview {
+    width: 250px;
+    height: 400px;
+    overflow: hidden;
+}
+#longRollers .bookPreview {
+    overflow: visible;
+    height: auto;
+}
+.bookDeets {
+    width: 100%;
+    padding: 10px;
+    background: #ffffff;
+
+}
+.bookRoll {
+    padding-top: 20px;
+}
+.full {
+    width: 100%;
+}
+.clearer {
+    clear: both;
+}
+.border {
+    width: 100%;
+    border-bottom: solid 1px #569f89;
+}
+.borderThick {
+    width: 100%;
+    border-bottom: solid 10px #569f89;
+}
+.center {
+    text-align: center;
+}
+.thin {
+    font-weight: lighter;
+}
+.whiteButton {
+    color: #ffffff;
+    border: solid 2px #ffffff;
+}
+.whiteButton:hover {
+    color: #ffffff;
+}
+.noTop {
+    padding-top: 0px;
+    margin-top: 0px;
+}
+.leftPush {
+    margin-left: 100px;
+}
+.greenBorderButton {
+    color: #569f89;
+    border: solid 2px #569f89;
+}
+.greenBorderButton:hover {
+    color: #569f89;
+}
+.green {
+    color: #569589;
+}
+.brownBox {
+    padding-top: 30px;
+    background: #efefef;
+    padding-bottom: 30px;
+}
+.splashTalk {
+    color: #ffffff;
+    padding-left: 20px;
+    padding-top: 80px;
+    text-align: center;
+}
+.greenButton:hover {
+    border: solid 1px #569f89;
+    color: #569f89;
+    background: #ffffff;
+}
+.roundButton {
+    padding: 7px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 40px;
+}
+.topPad {
+    padding-top: 10px;
+}
+header .greenButton {
+    margin-left: 20px;
+}
+.greenLink {
+    color: #569f89;
+    -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s;
+}
+header .greenLink {
+    margin-left: 15px;
+}
+.greenLink:hover {
+    color: #4a4a4a;
+}
+#landingSplash {
+    height: 300px;
+    background: url(bg.jpg);
+}
+.reviewText {
+    padding-left: 20px;
+    padding-top: 20px;
+}
+.preImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.reviewPreview {
+    background: #ffffff;
+    padding: 10px;
+    width: 100%;
+    clear: both;
+    -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s;
+    margin-bottom: 10px;
+}
+#reviewInput {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    width: 100%;
+    height: 400px;
+}
+#reviewMaster {
+    padding-top: 20px;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: none;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.reviewPreview:hover {
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,0.50);
+}
+.small {
+    font-size: 12px;
+}
+.greenBack {
+    background: rgba(24, 129, 113, 0.8);
+    width: 100%;
+    height: 100%;
+}
+.brownSpace {
+    background: #ffffff;
+    margin-bottom: 5px;
+    padding: 10px;
+    width: 100%;
+    color: #4a4a4a;
+    -webkit-transition: all ease-in .3s;
+    transition: all ease-in .3s;
+}
+.brownSpace:hover {
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.50);
+}
+.smallMenu {
+    position: absolute;
+    width: 100%;
+    background: #ffffff;
+    top: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+}
+.smallMenu a {
+    display: block;
+    text-align: center;
+}
+.smallMenu .greenLink {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bookInfo {
+    width: 100%;
+    margin-left: 20px;
+    font-size: 12.5px;
+}
+#reviewBox, #commentBox {
+    display: none;
+}
+#controllable {
+    width: 70%
+}
+#searchPut {
+    padding-top: 10px;
+    border: none;
+    width: 80%;
+    background: none;
+}
+.tabHolder {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+.smallShow {
+    display: none;
+}
+#searchBox {
+    padding-bottom: 10px;
+    background: rgba(195, 195, 195, 0.1);
+    padding-top: 10px;
+    display: none;
+}
+.reviewMain {
+    padding-top: 20px;
+}
+
+/*responsive queries start here*/
+/* iPads (landscape) ----------- */
+@media only screen  
+and (max-width : 1103px)  {
+    .container {
+        width: 95%;
+    }
+    .bookRoll .bookPreview:nth-child(4n+1) {
+        margin-left: 15px;
+    }
+}
+
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (max-width : 960px) {
+    .smallHide {
+        display: none;
+    }
+    .smallShow {
+        display: block;
+    }
+    .container {
+        width: 98%;
+    }
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (max-width : 768px) {
+    .frontCover {
+        text-align: center;
+        display: block;
+    }
+    .frontCover img {
+        width: 100% !important;
+    }
+    .tabHolder {
+        margin: 0px;
+        width: 100%;
+    }
+    .toggler {
+        font-size: 12px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    #controllable {
+        display: block;
+        width: 100%;
+    }
+    .bookInfo {
+        margin-left: 0px;
+        margin-top: 20px;
+    }
+}
+.addBookHold {
+    max-width: 500px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+
+
+/* FOr the glyphicon fonts*/
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url('/assets/glyphicons-halflings-regular.eot');
+    src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('/assets/glyphicons-halflings-regular.woff') format('woff'), url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), url('/assets/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}

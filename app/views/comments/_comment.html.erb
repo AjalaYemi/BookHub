@@ -1,4 +1,4 @@
-<div class="comment">
+<div class="reviewPreview">
 	  <hr />
 	  <% if current_user != nil %>
 	  <% if current_user.name == comment.user.name %>
@@ -6,6 +6,6 @@
 	  <% end %>
 	  <% else %>
 	  <% end %>
-	  <small><%= comment.user.name %> at <%= comment.updated_at.strftime("%B %d, %Y %H:%M") %> said:</small>
-	  <p><%= comment.body %></p>
+	  <small class="greenLink"><%= comment.user.name %></small><small> at <%= comment.updated_at.strftime("%B %d, %Y %H:%M") %> said:</small>
+	  <div class="reviewText"><%= comment.body %></div>
 </div>

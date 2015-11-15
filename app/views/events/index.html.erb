@@ -1,44 +1,22 @@
 <% @page_title = "All Events" %>
-<div class = "events index container">
-	<h2 class="text-center">Events</h2>	
-		<div class="row">		
-			<div class="col-sm-3"><strong class="centered">Name</strong></div>
-			<div class="col-sm-2"><strong class="centered">Venue</strong></div>
-			<div class="col-sm-1"><strong class="centered">City</strong></div>
-			<div class="col-sm-2"><strong class="centered">Number of Spaces</strong></div>
-			<div class="col-sm-2"><strong class="centered">Organiser</strong></div>
-			<div class="col-sm-2 centered">
-				<% if user_signed_in? %>
-					<%= link_to("Add New Event", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
-				<% end %></div>
-		</div> <!-- end row -->
-		<br />
-		<% @events.each do |event| %>
-		<div class="row <%= cycle('odd', 'even') %>">
-			<div class="col-sm-3"><%= event.name %></div>
-			<div class="col-sm-2"><%= event.venue %></div>
-			<div class="col-sm-1"><%= event.city %></div>
-			<div class="col-sm-2"><%= event.no_of_available_seats %></div>
-			<% unless event.created_by == 0 || event.created_by == nil %>
-				<div class="col-sm-2"><%= @users.find(event.created_by).name %></div>
-			<% else %>
-				<div class="col-sm-2"></div>	
-			<% end %>					
-			<div class="col-sm-2">
-				<%= link_to("Show", event_path(event), :class => 'btn btn-primary btn-sm') %>
-				<% if current_user.nil? %>
-				<% else %>
-				<% if current_user.id == event.created_by || current_user.try(:admin?) %>
-					<%= link_to("Edit", edit_event_path(event), :class => 'btn btn-info btn-sm') %>				 			
-				<% end %>
-				<% if current_user.id == event.created_by || current_user.try(:admin?) %>
-					<%= link_to("Delete", delete_event_path(event), :class => 'btn btn-warning btn-sm') %>
-				<% end %>
-				<% end %>
-			</div>
-		</div> <!-- end row -->
-		<% end %>
-		<br />
-		<%= will_paginate @events %>
-		<br />
-</div> <!-- end container -->
+     <section class="brownBox" id="longRollers">
+            <div class="container">
+                <h2 class="green thin pull-left noTop"><%= link_to "Events", events_path, :class => 'greenLink' %></h2>
+                <div class="borderThick clearer"></div>
+                <div class="full bookRoll">
+                	<% @events.each do |event| %>
+                    <div class="bookPreview inline">
+                        <%= link_to (image_tag event.avatar_url, :class => 'full'), event_path(event) %>
+                        <div class="bookDeets">
+                        <span class="green"><%= event.name %></span><br><span><% unless event.created_by == 0 || event.created_by == nil  %>Created by </span><span class="green">
+                       		<%= @users.find(event.created_by).name %>
+                       		<% end %>
+						</span>
+                        </div>
+                    </div>
+                    <% end %>             
+                </div>
+            </div>
+        </div>
+            <%= will_paginate @events %> 
+    </section>

@@ -1,46 +1,23 @@
 <% @page_title = "All Books" %>
-<div class = "container">
-	<h2 class="text-center">All Books</h2>	
-	<div class="row">		
-			<div class="col-sm-3"><strong class="centered">Title</strong></div>
-			<div class="col-sm-2"><strong class="centered">Author</strong></div>
-			<div class="col-sm-2"><strong class="centered">Publisher</strong></div>
-			<div class="col-sm-2"><strong class="centered">Published</strong></div>
-			<div class="col-sm-1"><strong class="centered">Genre</strong></div>
-			<div class="col-sm-2 centered">
-				<% if user_signed_in? %>
-					<%= link_to("Add New Book", {:action => 'new'}, :class => 'btn-sm btn-primary text-center') %>
-				<% end %>				
-			</div>		
-	</div>
-	<br />	
-		<% @books.each do |book| %>
-		<div class="row <%= cycle('odd', 'even') %>">
-			<div class="col-sm-3"><%= book.name %></div>
-			<div class="col-sm-2">
-				<% unless book.author_list == nil  %>
-					<%= raw book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-				<% end %>
-			</div>
-			<div class="col-sm-2"><%= book.publisher %></div>			
-			<div class="col-sm-2"><%= book.published_year.strftime("%B, %Y") %></div>
-			<div class="col-sm-1">
-				<% unless book.genre_list == nil  %>
-					<%= raw book.genre_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
-				<% end %>				
-			</div>
-			<div class="col-sm-2">
-				<%= link_to("Show", book_path(book), :class => ' btn btn-primary btn-sm') %>
-				 <% unless current_user.nil? %>				 
-				<%= link_to("Edit", edit_book_path(book), :class => 'btn btn-info btn-sm') %>				 
-				<% if current_user.id == book.created_by || current_user.try(:admin?) %>
-				<%= link_to("Delete", delete_book_path(book), :class => 'btn btn-warning btn-sm') %>
-				<% end %>
-				<% end %>
-			</div>
-		</div>	<!-- end row -->	
-		<% end %>
-		<br />
-	<%= will_paginate @books %>
-	<br />	
-</div> <!-- end container -->
+     <section class="brownBox" id="longRollers">
+            <div class="container">
+                <h2 class="green thin pull-left noTop"><%= link_to "Books", books_path, :class => 'greenLink' %></h2>
+                <div class="borderThick clearer"></div>
+                <div class="full bookRoll">
+                	<% @books.each do |book| %>
+                    <div class="bookPreview inline">
+                        <%= link_to (image_tag book.front_avatar_url, :class => 'full'), book_path(book) %>
+                        <div class="bookDeets">
+                        <span class="green"><%= book.name %></span><br><span>by </span><span class="green">
+                        <% unless book.author_list == nil  %>
+							<%= raw book.author_list.map { |t| link_to t, tag_path(t) }.join(', ') %>
+						<% end %>
+						</span>
+                        </div>
+                    </div>
+                    <% end %>             
+                </div>
+            </div>
+        </div>
+            <%= will_paginate @books %> 
+    </section>
