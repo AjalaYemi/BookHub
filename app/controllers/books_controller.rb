@@ -1,10 +1,13 @@
 class BooksController < ApplicationController
 
+before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+before_action :authenticate_admin!, only: [:delete, :destroy]
+
   def index
     if params[:tag]
-      @books = Book.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 12)
+      @books = Book.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 8)
     else
-      @books = Book.sorted.paginate(page: params[:page], per_page: 10)
+      @books = Book.sorted.paginate(page: params[:page], per_page: 8)
     end
   end
 

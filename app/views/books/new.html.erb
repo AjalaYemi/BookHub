@@ -1,16 +1,19 @@
 <% @page_title = "New Book Creation" %>
 
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+<section class="brownBox" id="longRollers">
+    <div class="container">
+         <h2 class="green thin pull-left noTop">&larr;<%= link_to "Back to Book list", books_path, :class => 'greenLink' %></h2>
+           <div class="borderThick clearer"></div>
+            <div class="addBookHold">
 
-<div class="book new">
-	<h2>Create Book</h2>
+			<%= form_for @book, :html => {:multipart => true} do |f| %>
 
-	<%= form_for @book, :html => {:multipart => true} do |f| %>
+				<%= render(:partial => "form", :locals => {:f => f}) %>
 
-		<%= render(:partial => "form", :locals => {:f => f}) %>
-
-		<div class="form-buttons">
-			<%= submit_tag("Create Book") %>
-		</div>
-	<% end %>
-</div>
+				<div class="form-buttons">
+				<%= submit_tag("Add This Book", :class => 'roundButton greenButton') %>
+				</div>
+			<% end %>
+			</div>
+	</div>      
+</section>

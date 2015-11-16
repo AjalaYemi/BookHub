@@ -1,20 +1,20 @@
 <% @page_title = @book.name %>
 <section class="brownBox" id="longRollers">
             <div class="container">
-                <h4 class="green thin pull-left noTop">&larr;<%= link_to " back to Books", books_path, :class => 'greenLink' %></h4>
+                <h4 class="green thin pull-left noTop">&larr;<%= link_to " back to Books list", books_path, :class => 'greenLink' %></h4>
                 <div class="borderThick clearer"></div>
                 <br>
                 <div class="inline frontCover"><% unless @book.front_avatar_url == nil %>                 
 				<%= image_tag @book.front_avatar_url(:thumb) %>
 				<% end %>
-                    <div class="topPad">
-                        
+                    <div class="topPad">                        
                     </div>
                 </div>
                 <div id="controllable" class="inline">
                     <div class="tabHolder">
                         <a href="#!" class="greenButton roundButton inline toggler" bh-target="#detailsBox"><span class="glyphicon glyphicon-book"></span> &nbsp; Details </a>
                         <a href="#!" class="greenButton roundButton inline toggler" bh-target="#reviewBox"><span class="glyphicon glyphicon-pencil"></span> &nbsp; Reviews </a>
+                        <%= link_to "Edit Book", edit_book_path(@book), :class => 'greenButton roundButton inline' %>
                          <!-- <a href="#!" class="greenButton roundButton inline toggler" bh-target="#commentBox"><span class="glyphicon glyphicon-comment"></span> &nbsp; Comments </a> -->
                     </div>
                     
@@ -63,6 +63,8 @@
                 <div class="bookInfo dashContent" id="reviewBox">
                     <h4 class="thin green pull-left">Reviews</h4>
                     <button class="btn btn-default pull-right small" onclick="showReviewModal(this)" bh-title="<%= @book.name %>"><span class="glyphicon glyphicon-plus"></span> Add review</button>
+                    <br />
+                    <br />
                     <% if @book.reviews.empty? %>
                     <div class="reviewPreview">                    	
 							<p> There are no Reviews on this book. Why not write yours? </p>

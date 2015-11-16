@@ -1,61 +1,65 @@
 <% @page_title = @event.name %>
-<%= link_to("<< Back to Event Listing", events_path, :class => 'back-link') %>
-<div class="container">
-	<h2 class="centered"><%= @event.name %></h2>
-	<% if user_signed_in? %>
-		<% if @event.users.include?current_user %>
-			<h4 class="alert-notice centered">You are registered for this event</h4>
-			<%= link_to("De-register for the Event", {:action => 'miss', :id => @event.id}, :class => 'btn-sm btn-primary text-center') %>	
-		<% else %>
-			<%= link_to("Register for Event", {:action => 'attend', :id => @event.id}, :class => 'btn-sm btn-primary text-center') %>	
-			
-		<% end %>
-
-	<% end %></div>
-	<div class="container">
-		<div class="row">		
-			<div class="col-sm-4"><strong>Venue</strong></div>
-			<div class="col-sm-8"><%= @event.venue %></div>
-		</div>
-		<br />
-		<div class="row">		
-			<div class="col-sm-4"><strong>Town/City</strong></div>
-			<div class="col-sm-8"><%= @event.city %></div>
-		</div>
-		<br />
-		<div class="row">		
-			<div class="col-sm-4"><strong>Number of Spaces</strong></div>
-			<div class="col-sm-8"><%= @event.no_of_available_seats %></div>
-		</div>			
-		<br />
-		<div class="row">		
-			<div class="col-sm-4"><strong>Number of People registered</strong></div>
-			<div class="col-sm-8"><%= @event.users.size %></div>
-		</div>			
-		<br />
-		<div class="row">		
-			<div class="col-sm-4"><strong>Event Description</strong></div>
-			<div class="col-sm-8"><%= @event.description %></div>
-		</div>
-		<br />	
-		<% unless @event.avatar_url == nil  %>			
-		<div class="row">		
-			<div class="col-sm-4 centered"><!-- <strong>Flyer</strong> --></div>
-			<div class="col-sm-8">
-			</div>
-		</div>
-		<% end %>
-		<br />
-		<% unless @event.created_by == 0 || @event.created_by == nil  %>		
-		<div class="row">		
-			<div class="col-sm-4 centered"><strong>Created by</strong></div>
-			<div class="col-sm-8"><strong><%= @users.find(@event.created_by).name %></strong></div>
-		</div>				
-		<% end %>
-	</div>	
-	<%= render_shareable %>
-</div>
-
+<section class="brownBox" id="longRollers">
+      	<div class="container">
+            <h4 class="green thin pull-left noTop">&larr;<%= link_to " back to Event List", events_path, :class => 'greenLink' %></h4>
+            <div class="borderThick clearer"></div>
+            <br />
+            <div class="inline frontCover"><% unless @event.avatar_url == nil %>                 
+			<%= image_tag @event.avatar_url(:thumb) %>
+			<% end %>
+                <div class="topPad">                        
+                </div>
+            </div>
+                <div id="controllable" class="inline">
+                    <div class="tabHolder">
+                        <!-- <a href="#!" class="greenButton roundButton inline toggler" bh-target="#detailsBox"><span class="glyphicon glyphicon-book"></span> &nbsp; Details </a>
+                        <a href="#!" class="greenButton roundButton inline toggler" bh-target="#reviewBox"><span class="glyphicon glyphicon-pencil"></span> &nbsp; Reviews </a> -->
+                        <% if @event.created_by == current_user.id %>
+                        <%= link_to "Edit Book", edit_event_path(@event), :class => 'greenButton roundButton inline' %>
+                        <% end %>
+                         <!-- <a href="#!" class="greenButton roundButton inline toggler" bh-target="#commentBox"><span class="glyphicon glyphicon-comment"></span> &nbsp; Comments </a> -->
+                        <% if user_signed_in? %>
+							<% if @event.users.include?current_user %>
+								<%= link_to("De-register for the Event", {:action => 'miss', :id => @event.id}, :class => 'greenButton roundButton inline') %>	
+							<% else %>
+								<%= link_to("Register for Event", {:action => 'attend', :id => @event.id}, :class => 'greenButton roundButton inline') %>
+							<% end %>
+						<% end %>
+					</div>
+                 
+                    
+                
+                <div class="bookInfo dashContent" id="detailsBox">
+                    <h4 class="thin green">Event Details</h4>
+                    <div class="brownSpace">
+                        <span class="pull-left">Name:</span> <span class="pull-right"><%= @event.name %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Venue:</span> <span class="pull-right"><%= @event.venue %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Town/City:</span> <span class="pull-right"><%= @event.city %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Number of Available Spaces:</span> <span class="pull-right"><%= @event.no_of_available_seats %></span><br><div class="clearer"></div>
+                    </div>
+                    <div class="brownSpace">
+                        <span class="pull-left">Number of People Registered:</span> <span class="pull-right"><%= @event.users.size %></span><br><div class="clearer"></div>
+                    </div>
+                    <% unless @event.created_by == 0 || @event.created_by == nil  %>
+                    <div class="brownSpace">
+                        <span class="pull-left">Created by:</span> <span class="pull-right"><%= @users.find(@event.created_by).name %></span><br><div class="clearer"></div>
+                    </div>
+                    <% end %>                    
+                    <div class="brownSpace">
+                        <span class="">Desciption:</span><br><br> <p class=""><%= @event.description %></p>
+                    </div>
+                </div>
+            </div>
+</section>
+        <br />
+        <br />
+        <%= render_shareable %>
 <hr />
 
 <div class="container">
@@ -68,4 +72,6 @@
 <%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
 </div>
 
-
+<br />
+<br />
+<br />

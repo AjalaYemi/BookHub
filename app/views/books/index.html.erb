@@ -2,6 +2,7 @@
      <section class="brownBox" id="longRollers">
             <div class="container">
                 <h2 class="green thin pull-left noTop"><%= link_to "Books", books_path, :class => 'greenLink' %></h2>
+                <%= link_to "Add Book", new_book_path, :class => 'greenButton roundButton inline pull-right' %>
                 <div class="borderThick clearer"></div>
                 <div class="full bookRoll">
                 	<% @books.each do |book| %>

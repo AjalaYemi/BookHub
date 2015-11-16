@@ -15,12 +15,12 @@
                 <!-- <a href="index.html" id="topLogo" class="pull-left"><img src="img/logo2.jpg"></a> -->
                 <div class="pull-right topPad">
                     <a href="#" class="greenLink smallHide" onclick="toggleSearchBox()">Search</a>
-                    <%= link_to 'Books', books_path, :class => 'greenLink  smallHide' %>                  
-                    <%= link_to 'Events', events_path, :class => 'greenLink  smallHide' %>
-                    <%= link_to 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'}, :class => 'greenLink  smallHide' %>
+                    <%= link_to 'Books', books_path, :class => 'greenLink smallHide' %>                  
+                    <%= link_to 'Events', events_path, :class => 'greenLink smallHide' %>
+                    <%= link_to 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'}, :class => 'greenLink smallHide' %>
                     <%= link_to 'Contact Us', '/contact_us', :class => 'greenLink smallHide' %>
                     <% if user_signed_in? %>           
-                                <%= link_to 'Edit Account Information', edit_user_registration_path, :class => 'greenLink  smallHide' %>
+                                <%= link_to 'Edit Account Information', edit_user_registration_path, :class => 'greenLink smallHide' %>
                                 <%= link_to 'Log out', destroy_user_session_path, :method => :delete, :class => 'greenButton roundButton  smallHide' %>                           
                     <% else %>
                         <span data-toggle="modal" data-target="#logInModal"><%= link_to 'Log In', new_user_session_path, :class => 'greenLink  smallHide' %></span>
@@ -37,7 +37,12 @@
                     <%= link_to 'Events', events_path, :class => 'greenLink' %>
                     <%= link_to 'Donate Books', {:controller => '/book_exchanges', :action => 'donate'}, :class => 'greenLink' %>
                     <%= link_to 'Contact Us', '/contact_us', :class => 'greenLink  smallHide' %>
-                    <span data-toggle="modal" data-target="#logInModal"><%= link_to 'Log In', new_user_session_path, :class => 'greenLink' %></span>
-                    <span data-toggle="modal" data-target="#signUpModal"><%= link_to 'Sign Up', new_user_registration_path, :class => 'greenButton roundButton' %></span>                
+                    <% if user_signed_in? %>           
+                                <%= link_to 'Edit Account Information', edit_user_registration_path, :class => 'greenLink smallHide' %>
+                                <%= link_to 'Log out', destroy_user_session_path, :method => :delete, :class => 'greenButton roundButton  smallHide' %>                           
+                    <% else %>
+                        <span data-toggle="modal" data-target="#logInModal"><%= link_to 'Log In', new_user_session_path, :class => 'greenLink  smallHide' %></span>
+                    <span data-toggle="modal" data-target="#signUpModal"><%= link_to 'Sign Up', new_user_registration_path, :class => 'greenButton roundButton  smallHide' %></span>
+                    <% end %> 
             </div>
         </div>

@@ -1,7 +1,11 @@
 class EventsController < ApplicationController
 
+
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_admin!, only: [:delete, :destroy]
+
   def index
-    @events = Event.sorted.paginate(page: params[:page], per_page: 12)
+    @events = Event.sorted.paginate(page: params[:page], per_page: 8)
     @users = User.all
   end
 
@@ -73,30 +77,30 @@ class EventsController < ApplicationController
 
 
    def attend
-    @event = Event.find_by_url(params[:id])
+    @event = Event.find(params[:id])
     @user = User.find(current_user.id)
     if @event.users.include?current_user && @event.users << @user
        flash[:notice] = "You have been registered"
        @users = User.all
-       redirect_to(:action => 'show', :id => @event.id)
+       redirect_to event_path(@event)
     else
        flash[:notice] = "Something happened and you were not registered. Try again later"
        @users = User.all
-       redirect_to(:action => 'show', :id => @event.id)
+       redirect_to event_path(@event)
     end
   end
 
   def miss
-    @event = Event.find_by_url(params[:id])
+    @event = Event.find(params[:id])
     @user = User.find(current_user.id)
     if @event.users.include?current_user && @event.users.delete(@user)
        flash[:notice] = "You have been de-registered"
        @users = User.all
-       redirect_to(:action => 'show', :id => @event.id)
+       redirect_to event_path(@event)
     else
        flash[:notice] = "Something happened and you were not registered. Try again later"
        @users = User.all
-       redirect_to(:action => 'show', :id => @event.id)
+       redirect_to event_path(@event)
     end
   end
 

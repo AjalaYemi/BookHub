@@ -6,27 +6,26 @@
           </div><!-- end col-sm-2 -->
           
           <div class="col-sm-4">
-            <h6>About Us</h6>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div><!-- end col-sm-4 -->
+            <h6>BookHub</h6>
+            <p>An online book community for lovers of literature to share, review and discuss books as well as follow literature events</p>
+          </div><!-- end col-sm-4-->
           
           <div class="col-sm-3">
             <h6>Navigation</h6>
             <ul class="unstyled">
-              <li><%= link_to("Books", books_path) %></li>
-              <li><%= link_to("Events", events_path) %></li>
-              <li><%= link_to("Book Swap", {:controller => '/book_exchanges', :action => 'swap'}) %></li>
-              <li><%= link_to("Donate Books", {:controller => '/book_exchanges', :action => 'donate'}) %></li>
-              <li><%= link_to("Contact Us", 'contact_us') %></li>
+              <li><%= link_to "Books", books_path, :class => 'white' %></li>
+              <li><%= link_to "Events", events_path, :class => 'white' %></li>
+              <li><%= link_to "Book Swap", {:controller => '/book_exchanges', :action => 'swap'}, :class => 'white' %></li>
+              <li><%= link_to "Donate Books", {:controller => '/book_exchanges', :action => 'donate'}, :class => 'white' %></li>
+              <li><%= link_to "Contact Us", '/contact_us', :class => 'white'%></li>
             </ul>
           </div><!-- end col-sm-3 -->
           
           <div class="col-sm-3">
             <h6>Follow Us</h6>
             <ul class="unstyled">
-              <li><a href="#">Twitter</a></li>
-              <li><a href="#">Facebook</a></li>
-              <li><a href="#">Google Plus</a></li>
+              <li><a href="http://www.twitter.com/bookhubng" target="blank" class="white">Twitter</a></li>
+              <li><a href="http://www.facebook.com/bookhubng" target="blank" class="white">Facebook</a></li>
             </ul>
           </div><!-- end col-sm-3 -->
           

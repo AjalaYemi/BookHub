@@ -1,19 +1,30 @@
-<% @page_title = "Review by #{@review.user.name} "%>
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
-<div class="review show">
-	<h2>Review: <%= @review.title %></h2>
-	<h4>Review by <%= @review.user.name %></h4>
-	<table summary="review detail view">
-		<tr>
-			<th>Review</th>
-			<td><%= @review.review %></td>
-		</tr>
-		<tr>
-			<th>Book</th>
-			<td><%= @review.book.name %></td>
-		</tr>
-	</table>
-</div>
+<% @page_title = " #{@review.title} "%>
+
+<section class="brownBox" id="longRollers">
+            <div class="container">
+                <h3 class="green thin pull-left noTop"><a href="addbook.html" class="greenLink"><%= @review.title %></a></h3>
+                <div class="borderThick clearer"></div>
+                <div class="reviewMain">
+                        <div class="inline frontCover">                        
+                        <%= image_tag @review.book.front_avatar_url(:thumb)%>                       
+                        <div class="topPad">                        
+                            <span class="roundButton greenButton block center"><span class="glyphicon glyphicon-book"> </span> &nbsp; <%= link_to "View Book Page", book_path(@review.book) %></span>
+                            <span class="roundButton greenButton block center"> <span class="glyphicon glyphicon-trash "> </span>, &nbsp;<%= link_to "Delete this review", delete_review_path %></span>
+                        </div>
+                    </div>
+                <div id="controllable" class="inline">                
+                    <div class="bookInfo">
+                        <div class="reviewPreview">
+                        <span class="greenLink"><%= @review.user.name %></span> reviewed this book at <%= @review.created_at.strftime("%B %d, %Y %H:%M") %></a>
+                        <div class="reviewText">
+                            <%= @review.review %>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+</section>
 
 <%= render_shareable %>
 
@@ -27,3 +38,5 @@
 <% end %>
 <%= render(:partial => 'comments/comment', :collection => @comments, :as => :comment) %>
 </div>
+<br />
+<br />

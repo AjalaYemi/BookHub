@@ -1,48 +1,47 @@
 		<%= error_messages_for(@book) %>
-		<table summary="Book form fields">
-			<tr>
-				<th><%= f.label(:name, "Book Title") %></th>
-				<td><%= f.text_field(:name) %></td>
-			</tr>
-			<tr>
-				<th><%= f.label :author_list, "Author(s) (separated by commas)" %></th>
-				<td><%= f.text_field :author_list %></td>
-			</tr>
-			<tr>
-				<th><%= f.label(:publisher) %></th>
-				<td><%= f.text_field(:publisher) %></td>
-			</tr>
-			<tr>
-				<th><%= f.label :genre_list, "Genre (separated by commas)" %></th>
-				<td><%= f.text_field :genre_list %></td>
-			</tr>
-			<tr>
-				<th><%= f.label(:page_count, "Page Count") %></th>
-				<td><%= f.text_field(:page_count) %></td>
-			</tr>
-			<tr>
-				<th><%= f.label(:word_count) %></th>
-				<td><%= f.text_field(:word_count) %></td>
-			</tr>
-			<tr>
-				<th><%= f.label(:isbn, "ISBN") %></th>
-				<td><%= f.text_field(:isbn) %></td>
-			</tr>
-			<tr>
-				<th><%= f.label(:bio, "Summary") %></th>
-				<td><%= f.text_area(:bio) %></td>
-			</tr>	
-			<tr>
-				<th><%= f.label(:front_avatar, "Book Cover") %></th>
-				<td><%= image_tag(@book.front_avatar_url(:normal)) if @book.front_avatar? %>
-					<%= f.file_field(:front_avatar) %></td>
-				 <%= f.hidden_field(:front_avatar_cache) %>
-			</tr>
-			<tr>
-				<th><%= f.label(:published_year, "Date Published") %></th>
-				<td><%= f.date_select(:published_year, :end_year => Time.now.year, :discard_day => true, :order => [:month, :year], :start_year => Time.now.year-100) %></td>
-			</tr>
-			<br />	
-			<br />		
-		</table>
 		
+         <div class="form-group">
+		 	<%= f.label(:name, "Book Title") %>
+			<%= f.text_field :name, class: "form-control", placeholder: "Write the title of the book" %>
+		</div>
+		<div class="form-group">
+				<%= f.label :author_list, "Author(s) (separated by commas)" %>
+				<%= f.text_field :author_list, class: "form-control", placeholder: "Authors" %>
+		</div>
+		<div class="form-group">
+				<%= f.label(:publisher) %>
+				<%= f.text_field :publisher, class: "form-control", placeholder: "Publisher" %>
+		</div>
+		<div class="form-group">
+				<%= f.label :genre_list, "Genre (separated by commas)" %>
+				<%= f.text_field :genre_list, class: "form-control", placeholder: "Genre" %>
+		</div>
+		<div class="form-group">
+				<%= f.label(:page_count, "Page Count") %>
+				<%= f.text_field :page_count, class: "form-control", placeholder: "How many pages is this book?" %>
+		</div>
+		<div class="form-group">
+				<%= f.label(:word_count) %>
+				<%= f.text_field :word_count, class: "form-control", placeholder: "How many words are in this book?" %>
+		</div>
+		<div class="form-group">
+				<%= f.label(:isbn, "ISBN") %>
+				<%= f.text_field :isbn, class: "form-control", placeholder: "ISBN the book" %>
+		</div>
+		<div class="form-group">
+				<%= f.label(:bio, "Summary") %>
+				<%= f.text_area :bio, class: "form-control", placeholder: "Write a short summary of the book" %>
+		</div>
+		<div>
+				<%= f.label(:front_avatar, "Book Cover") %>
+				<%= image_tag(@book.front_avatar_url(:normal)) if @book.front_avatar? %>
+					<%= f.file_field :front_avatar, class: "form-control" %>
+				 <%= f.hidden_field(:front_avatar_cache) %>
+		</div>
+		<br />
+		<div>
+				<%= f.label(:published_year, "Date Published") %>
+				<%= f.date_select(:published_year, :end_year => Time.now.year, :discard_day => true, :order => [:month, :year], :start_year => Time.now.year-100) %>
+		</div>
+			<br />	
+			<br />				

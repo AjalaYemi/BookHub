@@ -33,8 +33,8 @@ textarea {
 .block {
     display: block
 }
-footer {
-    background: #000000;
+footer {    
+    font-size: 12px !important;
     min-height: 100px;
 }
 #eventsHolder {

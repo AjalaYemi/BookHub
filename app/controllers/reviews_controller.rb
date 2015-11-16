@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
 
-  # before_action :authenticate_user! , :only => [:create, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_admin!, only: [:delete, :destroy]
 
   def index
     @reviews = Review.sorted.paginate(page: params[:page], per_page: 10)
