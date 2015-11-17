@@ -14,7 +14,9 @@
                     <div class="tabHolder">
                         <a href="#!" class="greenButton roundButton inline toggler" bh-target="#detailsBox"><span class="glyphicon glyphicon-book"></span> &nbsp; Details </a>
                         <a href="#!" class="greenButton roundButton inline toggler" bh-target="#reviewBox"><span class="glyphicon glyphicon-pencil"></span> &nbsp; Reviews </a>
+                        <% if user_signed_in? %>
                         <%= link_to "Edit Book", edit_book_path(@book), :class => 'greenButton roundButton inline' %>
+                        <% end %>
                          <!-- <a href="#!" class="greenButton roundButton inline toggler" bh-target="#commentBox"><span class="glyphicon glyphicon-comment"></span> &nbsp; Comments </a> -->
                     </div>
                     
@@ -34,7 +36,7 @@
                         <span class="pull-left">Publisher:</span> <span class="pull-right"><%= @book.publisher %></span><br><div class="clearer"></div>
                     </div>
                     <div class="brownSpace">
-                        <span class="pull-left">ISBN:</span> <span class="pull-right"><%= @book.published_year %></span><br><div class="clearer"></div>
+                        <span class="pull-left">ISBN:</span> <span class="pull-right"><%= @book.isbn %></span><br><div class="clearer"></div>
                     </div>
                     <div class="brownSpace">
                         <span class="pull-left">Published:</span> <span class="pull-right"><%= @book.published_year %></span><br><div class="clearer"></div>
@@ -62,7 +64,7 @@
                 
                 <div class="bookInfo dashContent" id="reviewBox">
                     <h4 class="thin green pull-left">Reviews</h4>
-                    <button class="btn btn-default pull-right small" onclick="showReviewModal(this)" bh-title="<%= @book.name %>"><span class="glyphicon glyphicon-plus"></span> Add review</button>
+                    <% if user_signed_in? %><button class="btn btn-default pull-right small" onclick="showReviewModal(this)" bh-title="<%= @book.name %>"><span class="glyphicon glyphicon-plus"></span> Add review </button><% end %>
                     <br />
                     <br />
                     <% if @book.reviews.empty? %>
@@ -74,9 +76,12 @@
                         		<div class="reviewText">
 								    <%= truncate("#{review.review}", length: 200) %>					
                                     <i><%= link_to "Read full review", review_path(review), :class => 'greenLink' %></i>
+                                    <br>
+                                    <hr>
                                     <% end %>
-                                </div>
+                                </div>                                
                     </div>
+                    
                     <% end %>                    
                 </div>
         </section>
@@ -103,11 +108,12 @@
             <div class="container">
                 <button class="btn pull-right btn-default" onclick="hideReviewModal()">Close</button>   
                 <h2 class="thin">New review for: <span class="green" id="reviewTitle"></span></h2>
-                <form>
-                    <textarea placeholder="Start writing" id="reviewInput"></textarea>
+                <%= form_for(@review, :as => :review, url: reviews_path) do |f| %>
+                    <%= f.text_field :title, :placeholder => "Title of Review", :class => "form-control"  %><br />
+                    <%= f.text_field :review, :placeholder => "Start writing", :id => "reviewInput" %>
+                    <%= f.hidden_field :book_id, { :value => @book.id } %>
                     <br><br>
-                    <input type="submit" class="roundButton greenButton" value="Upload review">
-                </form>
+                    <%= f.submit "Upload review", :class => 'roundButton greenButton' %>
+                 <% end %>
             </div>
         </section>
-        

@@ -17,10 +17,12 @@ before_action :authenticate_admin!, only: [:delete, :destroy]
       @users = User.all
       @comments = @book.comment_threads.order('created_at desc')
       @new_comment = Comment.build_from(@book, current_user.id, "")
+      @review = Review.new
     else
       @book = Book.find_by_url(params[:id])
       @users = User.all
       @comments = @book.comment_threads.order('created_at desc')
+      @review = Review.new
     end
   end
 

@@ -9,7 +9,9 @@
                         <%= image_tag @review.book.front_avatar_url(:thumb)%>                       
                         <div class="topPad">                        
                             <span class="roundButton greenButton block center"><span class="glyphicon glyphicon-book"> </span> &nbsp; <%= link_to "View Book Page", book_path(@review.book) %></span>
+                            <% if @review.user_id == current_user.id %>
                             <span class="roundButton greenButton block center"> <span class="glyphicon glyphicon-trash "> </span>, &nbsp;<%= link_to "Delete this review", delete_review_path %></span>
+                            <% end %>
                         </div>
                     </div>
                 <div id="controllable" class="inline">                
