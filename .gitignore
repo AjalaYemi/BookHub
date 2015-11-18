@@ -15,5 +15,5 @@
 /log/*.log
 /tmp
 
-# For the mailing stuffs
+# For the mailing stuffscd
 Procfile
