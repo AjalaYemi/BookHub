@@ -90,8 +90,8 @@ Rails.application.configure do
   address: "mail.bookhub.ng",
   port: 25,
   domain: ENV["GMAIL_DOMAIN"],
-  authentication: "plain",
-  enable_starttls_auto: true,
+  authentication: "none",
+  enable_starttls_auto: false,
   user_name: ENV["GMAIL_USERNAME"],
   password: ENV["GMAIL_PASSWORD"]
   }
