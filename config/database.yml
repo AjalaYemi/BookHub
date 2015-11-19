@@ -21,9 +21,9 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: mysql2
-  encoding: utf8
-  database: bookhubn_bookhub
-  pool: 5
-  username: bookhubn_bookhub
-  password: friendly89fire@
+  # adapter: mysql2
+  # encoding: utf8
+  # database: bookhubn_bookhub
+  # pool: 5
+  # username: bookhubn_bookhub
+  # password: friendly89fire@
