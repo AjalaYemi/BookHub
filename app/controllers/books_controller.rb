@@ -5,9 +5,9 @@ before_action :authenticate_admin!, only: [:delete, :destroy]
 
   def index
     if params[:tag]
-      @books = Book.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 8)
+      @books = Book.newest_first.tagged_with(params[:tag]).paginate(page: params[:page], per_page: 8)
     else
-      @books = Book.sorted.paginate(page: params[:page], per_page: 8)
+      @books = Book.newest_first.paginate(page: params[:page], per_page: 8)
     end
   end
 
