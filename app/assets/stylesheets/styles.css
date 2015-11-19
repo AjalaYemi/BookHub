@@ -116,3 +116,11 @@ nav.share iframe {border:0; margin-top:0; padding-top:0;} /* if using medium siz
 .fb-like{display:inline-block}
 * html .fb-like{display:inline}/* ie6 inline block fix*/
 *+html .fb-like{display:inline}/* ie7 inline block fix*/
+
+
+/* Others */
+
+#landingSplash {
+    height: 300px;
+    background: url(bg.jpg);
+}

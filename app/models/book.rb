@@ -20,7 +20,7 @@ class Book < ActiveRecord::Base
 	has_many :comments
 	has_many :book_exchanges
 	has_many :users, :through => :book_exchanges
-	has_and_belongs_to_many :authors
+	# has_and_belongs_to_many :authors
 	# has_and_belongs_to_many :genres
 
 	# before_validation :add_default_permalink
